@@ -38,6 +38,7 @@ body {
 .header-links a {
   color: #ffffff;
   text-decoration: none;
+  padding: 1rem;
 }
 .header-links a:hover {
   color: #ff8000;
@@ -110,7 +111,7 @@ a:hover {
 }
 .sidebar {
   position: fixed;
-  transition: all .5sec;
+  transition: all .5s;
   transform: translateX(-30rem);
   width: 30rem;
   background-color: #f0f0f0;
