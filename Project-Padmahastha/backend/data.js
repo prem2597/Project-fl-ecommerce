@@ -9,6 +9,7 @@ export default {
             brand: 'Nike',
             rating: 4.5,
             numReviews: 10,
+            countInStock: 6,
         },
         {
             _id: '2',
@@ -19,6 +20,7 @@ export default {
             brand: 'Nike',
             rating: 4.2,
             numReviews: 10,
+            countInStock: 5,
         },
         {
             _id: '3',
@@ -29,6 +31,7 @@ export default {
             brand: 'Nike',
             rating: 4.5,
             numReviews: 10,
+            countInStock: 2,
         },
         {
             _id: '4',
@@ -39,6 +42,7 @@ export default {
             brand: 'Nike',
             rating: 4.5,
             numReviews: 10,
+            countInStock: 3,
         },
     ] 
 }
