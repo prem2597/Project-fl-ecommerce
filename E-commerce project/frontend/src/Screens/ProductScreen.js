@@ -1,7 +1,13 @@
 import React from 'react';
+import data from '../data';
 
-function ProductScreen (props) {
-    return <div>ProductScreen</div>
+function ProductScreen(props) {
+	console.log(props.match.params.id);
+	const product = data.products.find(x => x._id === props.match.params.id);
+	// console.log(product.name);
+  	return <div>
+	  	<h1>{product.name}</h1>
+  	</div>
 }
 
 export default ProductScreen;
