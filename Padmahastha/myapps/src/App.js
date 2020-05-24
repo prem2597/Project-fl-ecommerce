@@ -9,10 +9,10 @@ import ProductScreen from "./Screens/ProductScreen";
 function App() {
 
   const openMenu = () => {
-    document.querySelector(".sidebar").classList.add("open")
+    document.querySelector(".sidebar").classList.add("open");
   }
     const closeMenu = () => {
-      document.querySelector(".sidebar").classList.remove("open")
+      document.querySelector(".sidebar").classList.remove("open");
 
     }
   return (
@@ -24,7 +24,7 @@ function App() {
             <button onClick={openMenu} >
                 &#9776;
             </button >
-            <Link to="/">Amazona</Link>
+            <Link to="/">Padmahastha</Link>
            
         </div>
         <div className = "header-links">
