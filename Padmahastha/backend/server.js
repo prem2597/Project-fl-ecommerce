@@ -11,7 +11,7 @@ app.get("/api/products/:id", (req,res) => {
     if(product)
          res.send(product);
     else
-    res.status(404).send({msg: "Product not found"})     
+    res.status(404).send({msg: "Product not Found."})     
 }
 );
 app.get("/api/products", (req,res) => {
@@ -21,4 +21,4 @@ app.get("/api/products", (req,res) => {
 }
 );
 
-app.listen(5003, () => { console.log("server started at http://localhost:5000")});
+app.listen(5004, () => { console.log("server started at http://localhost:5000")});
