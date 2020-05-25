@@ -5,16 +5,20 @@ import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import SigninScreen from './screens/signinScreen';
+import { useSelector } from 'react-redux';
 
 function App() {
 
-const openMenu = () => {
-  document.querySelector(".sidebar").classList.add("open");
-}
+  const userSignin = useSelector(state => state.userSignin);
+  const {userInfo} = userSignin;
 
-const closeMenu = () => {
-  document.querySelector(".sidebar").classList.remove("open");
-}
+  const openMenu = () => {
+    document.querySelector(".sidebar").classList.add("open");
+  }
+
+  const closeMenu = () => {
+    document.querySelector(".sidebar").classList.remove("open");
+  }
 
   return (
     <BrowserRouter>
@@ -29,7 +33,12 @@ const closeMenu = () => {
           </div>
           <div className="header-links">
             <a href="cart.html">Cart</a>
-            <Link to="/signin"><a href="signin.html">Signin</a></Link>
+            {
+              userInfo ? <Link to="/profile">{userInfo.name}</Link>:
+
+                <Link to="/signin">Sign In</Link>
+
+            }
           </div>
         </header>
         <aside className="sidebar">
