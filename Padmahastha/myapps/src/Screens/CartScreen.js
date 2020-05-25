@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
-import { addToCart } from '../actions/cartActions';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function CartScreen(props) {
 
@@ -10,6 +11,10 @@ function CartScreen(props) {
     const productId = props.match.params.id;
     const qty = props.location.search ? Number(props.location.search.split("=")[1]) : 1;
     const dispatch = useDispatch();
+    const removeFromCartHandler = (productId) => {
+        dispatch(removeFromCart(productId));
+
+    }
 
 
 useEffect(() => {
@@ -18,7 +23,7 @@ useEffect(() => {
     }
 
 
-},[])
+},[dispatch, productId, qty]);
 
     return <div className="cart">
         <div className='cart-list'>
@@ -38,26 +43,38 @@ useEffect(() => {
                     </div>
                     :
                     cartItems.map( item =>
-                        <div>
+                       
+                        <li>
+                            <div className="cart-image">
                             <img src={item.image} alt = "product" />
+                            </div>
+                            
                             <div className="cart-name">
                                 <div>
-                                    {item.name}
+                                    <Link to={"/product/" + item.product}>
+                                         {item.name}
+                                    </Link>
+                                   
                                 </div>
                                 <div>
                                     Qty:
-                                    <select>
+                                    <select value ={item.qty} onChange = {(e) => dispatch(addToCart(item.product,e.target.value))}>
+                                       
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
 
                                     </select>
+                                    <button  type="button" className="button" onClick={ () =>removeFromCartHandler(item.product)}>
+                                        Delete
+                                    </button>
                                 </div>
                             </div>
-                            <div>
-                                {item.price}
+                            <div className="cart-price">
+                                ${item.price}
                             </div>
-                        </div>
+                       
+                        </li>
                         )
                 }
                  
