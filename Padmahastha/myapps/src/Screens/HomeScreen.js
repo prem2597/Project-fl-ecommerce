@@ -1,6 +1,6 @@
-import React,{useState,useEffect} from 'react';
-// import React,{useEffect} from 'react';
-// import render from 'react';
+// import React,{useState,useEffect} from 'react';
+import React from 'react';
+import {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import { useSelector, useDispatch} from 'react-redux';
 // import data from '../data';
@@ -20,14 +20,16 @@ function HomeScreen(props) {
       return () => {
 
       };
-    },[])
+    },[dispatch]);
 
 
     
   return loading ? <div>loading...</div> :
     error ? <div>{error}</div> :
+    
   <ul className = "products">
     {
+     
       products.map(product =>
         <li key={product._id}>
           <div className = "product">
@@ -39,12 +41,13 @@ function HomeScreen(props) {
               </div>
               <div className = "product-brand">{product.brand}</div>
               <div className="product-price">${product.price}</div>
-              <div className="product-rating">{product.rating} Stars {product.numReviews}</div>
+              <div className="product-rating">{product.rating} Stars {product.numReviews} Reviews</div>
               </div>
       </li> )
     }
       
    </ul>
+    
 };
 
     

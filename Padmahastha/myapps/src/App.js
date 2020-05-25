@@ -42,6 +42,9 @@ function App() {
             <li>
                 <a href="index.html">Shirts</a>
             </li>
+            <li>
+              <a href="index.html">Jewellery</a>
+            </li>
         </ul>
     </aside>
     <main className="main">
