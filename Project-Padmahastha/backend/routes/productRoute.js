@@ -41,10 +41,20 @@ router.put("/:id", async (req, res) => {
         product.description = req.body.description;
         const updatedProduct = await product.save();
         if(updatedProduct){
-            return res.status(201).send({message: 'Product Updated', data: updatedProduct});
+            return res.status(200).send({message: 'Product Updated', data: updatedProduct});
         }
     }
     return res.status(500).send({message: 'Error in Updating Product.'})
+})
+
+router.delete("/:id", async (req, res) => {
+    const deletedProduct = await Product.findById(req.params.id);
+    if (deletedProduct) {
+        await deletedProduct.remove();
+        res.send({message: "Product Deleted"});
+    } else {
+        res.send("Error in Deletion.")
+    }
 })
 
 export default router;
