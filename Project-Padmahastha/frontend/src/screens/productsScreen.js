@@ -5,7 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { saveProduct, listProducts } from '../actions/productActions';
 
 function ProductsScreen(props) {
-
+    const [modalVisible, setModalVisible] = useState(false);
+    const [id, setId] = useState('');
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [image, setImage] = useState('');
@@ -25,76 +26,91 @@ function ProductsScreen(props) {
         };
     }, []);
 
+    const openModal = (product) => {
+        setModalVisible(true);
+        setId(product._id);
+        setName(product.name);
+        setPrice(product.price);
+        setDescription(product.description);
+        setImage(product.image);
+        setBrand(product.brand);
+        setCategory(product.category);
+        setCountInStock(product.countInStock);
+    }
+
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(saveProduct({name, price, image, brand, category, countInStock, description,}));
+        dispatch(saveProduct({_id: id, name, price, image, brand, category, countInStock, description,}));
     }
 
     return <div className="content content-margined">
         <div className="product-header">
             <h3>Products</h3>
-            <button>Create Product</button>
+            <button onClick = {() => openModal({})}>Create Product</button>
         </div>
-
-        <div className="form">
-            <form onSubmit = {submitHandler} >
-                <ul className="form-container">
-                    <li>
-                        <h2>Create Product</h2>
-                    </li>
-                    <li>
-                        {loadingSave && <div>Loading...</div>}
-                        {errorSave && <div>{errorSave}</div>}
-                    </li>
-                    <li>
-                        <label htmlFor="name">
-                            Name
-                        </label>
-                        <input type="text" name="name" value={name} id="name" onChange={(e) => setName(e.target.value)}></input>
-                    </li>
-                    <li>
-                        <label htmlFor="price">
-                            Price
-                        </label>
-                        <input type="text" name="price" value={price} id="price" onChange={(e) => setPrice(e.target.value)}></input>
-                    </li>
-                    <li>
-                        <label htmlFor="image">
-                            Image
-                        </label>
-                        <input type="text" name="image" value={image} id="image" onChange={(e) => setImage(e.target.value)}></input>
-                    </li>
-                    <li>
-                        <label htmlFor="brand">
-                            Brand
-                        </label>
-                        <input type="text" name="brand" value={brand} id="brand" onChange={(e) => setBrand(e.target.value)}></input>
-                    </li>
-                    <li>
-                        <label htmlFor="countInStock">
-                            CountInStock
-                        </label>
-                        <input type="text" name="countInStock" value={countInStock} id="countInStock" onChange={(e) => setCountInStock(e.target.value)}></input>
-                    </li>
-                    <li>
-                        <label htmlFor="name">
-                            Category
-                        </label>
-                        <input type="text" name="category" value={category} id="category" onChange={(e) => setCategory(e.target.value)}></input>
-                    </li>
-                    <li>
-                        <label htmlFor="name">
-                            Description
-                        </label>
-                        <textarea name="description" id="name" onChange={(e) => setDescription(e.target.value)}></textarea>
-                    </li>
-                    <li>
-                        <button type="submit" className="button primary">Create</button>
-                    </li>
-                </ul>
-            </form>
-        </div>
-
+        { modalVisible &&
+            <div className="form">
+                <form onSubmit = {submitHandler} >
+                    <ul className="form-container">
+                        <li>
+                            <h2>Create Product</h2>
+                        </li>
+                        <li>
+                            {loadingSave && <div>Loading...</div>}
+                            {errorSave && <div>{errorSave}</div>}
+                        </li>
+                        <li>
+                            <label htmlFor="name">
+                                Name
+                            </label>
+                            <input type="text" name="name" value={name} id="name" onChange={(e) => setName(e.target.value)}></input>
+                        </li>
+                        <li>
+                            <label htmlFor="price">
+                                Price
+                            </label>
+                            <input type="text" name="price" value={price} id="price" onChange={(e) => setPrice(e.target.value)}></input>
+                        </li>
+                        <li>
+                            <label htmlFor="image">
+                                Image
+                            </label>
+                            <input type="text" name="image" value={image} id="image" onChange={(e) => setImage(e.target.value)}></input>
+                        </li>
+                        <li>
+                            <label htmlFor="brand">
+                                Brand
+                            </label>
+                            <input type="text" name="brand" value={brand} id="brand" onChange={(e) => setBrand(e.target.value)}></input>
+                        </li>
+                        <li>
+                            <label htmlFor="countInStock">
+                                CountInStock
+                            </label>
+                            <input type="text" name="countInStock" value={countInStock} id="countInStock" onChange={(e) => setCountInStock(e.target.value)}></input>
+                        </li>
+                        <li>
+                            <label htmlFor="name">
+                                Category
+                            </label>
+                            <input type="text" name="category" value={category} id="category" onChange={(e) => setCategory(e.target.value)}></input>
+                        </li>
+                        <li>
+                            <label htmlFor="name">
+                                Description
+                            </label>
+                            <textarea name="description" id="name" onChange={(e) => setDescription(e.target.value)}></textarea>
+                        </li>
+                        <li>
+                            <button type="submit" className="button primary">{id ? "Update" : "Create"}</button>
+                        </li>
+                        <li>
+                            <button type="button" onClick={()=>setModalVisible(false)} className="button secondary">Back</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        }
         <div className="product-list">
             <table>
                 <thead>
@@ -115,7 +131,7 @@ function ProductsScreen(props) {
                     <td>{product.category}</td>
                     <td>{product.brand}</td>
                     <td>
-                        <button>Edit</button>
+                        <button onClick={() => openModal(product)}>Edit</button>
                         <button>Delete</button>
                     </td>
                     </tr>))}

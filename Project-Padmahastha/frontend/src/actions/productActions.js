@@ -17,12 +17,21 @@ const saveProduct = (product) => async (dispatch, getState) =>{
     try {
         dispatch({type: PRODUCT_SAVE_REQUEST, payload: product});
         const {userSignin:{userInfo}} = getState();
-        const { data } = await Axios.post('/api/products', product, {
-            headers:{
-                'Authorization' : 'Prem' + userInfo.token
-            }
-        });
-        dispatch({type: PRODUCT_SAVE_SUCCESS, payload: data});
+        if(!product._id) {
+            const { data } = await Axios.post('/api/products', product, {
+                headers:{
+                    'Authorization' : 'Prem' + userInfo.token
+                }
+            });
+            dispatch({type: PRODUCT_SAVE_SUCCESS, payload: data});
+        } else {
+            const { data } = await Axios.put('/api/products/' + product._id, product, {
+                headers:{
+                    'Authorization' : 'Prem' + userInfo.token
+                }
+            });
+            dispatch({type: PRODUCT_SAVE_SUCCESS, payload: data});
+        }
     } catch (error) {
         dispatch({type: PRODUCT_SAVE_FAIL, payload: error.message});
     }
