@@ -1,0 +1,32 @@
+{
+  "name": "e-commerce-project",
+  "version": "1.0.0",
+  "description": "E-commerce website",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch backend --exec babel-node backend/server.js"
+  },
+  "author": "Dharshak",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "nodemon": "^2.0.4"
+  },
+  "scripts" : {
+    "start": "nodemon --watch backend --exec babel-node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prem2597/Project-fl-ecommerce.git"
+  },
+  "bugs": {
+    "url": "https://github.com/prem2597/Project-fl-ecommerce/issues"
+  },
+  "homepage": "https://github.com/prem2597/Project-fl-ecommerce#readme"
+}
