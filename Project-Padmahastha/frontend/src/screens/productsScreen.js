@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// import { signin } from '../actions/userActions';
+import { signin } from '../actions/userActions';
 import { saveProduct, listProducts, deleteProduct } from '../actions/productActions';
 
 function ProductsScreen(props) {
@@ -121,7 +121,7 @@ function ProductsScreen(props) {
             </div>
         }
         <div className="product-list">
-            <table>
+            <table className="table">
                 <thead>
                     <tr>
                         <th>ID</th>
