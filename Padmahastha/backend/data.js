@@ -9,7 +9,8 @@ export default {
             price:60,
             brand: "Nike",
             rating:4.5,
-            numReviews:10
+            numReviews:10,
+            countInStock:2,
         },
         {
             _id:'2',
@@ -19,7 +20,8 @@ export default {
             price:80,
             brand:"Nike",
             rating:4.3,
-            numReviews:10
+            numReviews:10,
+            countInStock:3,
         },
         {
             _id:'3',
@@ -29,7 +31,8 @@ export default {
             price:90,
             brand:"Nike",
             rating:4.2,
-            numReviews:10
+            numReviews:20,
+            countInStock:9,
         },
         {
             _id:'4',
@@ -39,7 +42,41 @@ export default {
             price:80,
             brand:"Nike",
             rating:4.3,
-            numReviews:10
+            numReviews:8,
+            countInStock:20,
+        },
+        {
+            _id:'5',
+            name:"Fit shirt",
+            category:"shirts",
+            image:"/Images/d1.jpg",
+            price:80,
+            brand:"Nike",
+            rating:4.3,
+            numReviews:8,
+            countInStock:20,
+        },
+        {
+            _id:'6',
+            name:"Fit shirt",
+            category:"shirts",
+            image:"/Images/d1.jpg",
+            price:80,
+            brand:"Nike",
+            rating:4.3,
+            numReviews:18,
+            countInStock:20,
+        },
+        {
+            _id:'7',
+            name:"Fit shirt",
+            category:"shirts",
+            image:"/Images/d1.jpg",
+            price:80,
+            brand:"Nike",
+            rating:4.3,
+            numReviews:8,
+            countInStock:20,
         },
        
         

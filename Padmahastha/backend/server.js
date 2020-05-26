@@ -1,8 +1,26 @@
 import express from 'express';
+// import data from './data';
 import data from './data';
+import dotenv from 'dotenv';
+import config from './config';
+import mongoose from 'mongoose';
+import userRoute from './routes/userRoute';
+
+
+dotenv.config();
+
+const mongodbUrl = config.MONGODB_URL;
+mongoose.connect(mongodbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true ,
+    useCreateIndex:true
+
+}).catch(error => console.log(error.reason));
+
 
 const app = express();
 
+app.use("/api/users", userRoute);
 
 app.get("/api/products/:id", (req,res) => {
     console.log("got");
@@ -21,4 +39,4 @@ app.get("/api/products", (req,res) => {
 }
 );
 
-app.listen(5004, () => { console.log("server started at http://localhost:5000")});
+app.listen(5000, () => { console.log("server started at http://localhost:5000")});
