@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { addToCart, removeFromCart } from '../actions/cartActions';
+// import { addToCart, removeFromCart } from '../actions/cartActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/checkoutSteps';
@@ -20,7 +20,7 @@ function PlaceOrderScreen(props) {
     const shippingPrice = itemsPrice > 100 ? 0 : 10;
     const taxPrice = 0.15 * itemsPrice;
     const totalPrice = itemsPrice + shippingPrice + taxPrice;
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const placeOrderHandler = () => {
     // create an order

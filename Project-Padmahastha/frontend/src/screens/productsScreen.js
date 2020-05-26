@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { signin } from '../actions/userActions';
+// import { signin } from '../actions/userActions';
 import { saveProduct, listProducts, deleteProduct } from '../actions/productActions';
 
 function ProductsScreen(props) {
@@ -29,7 +29,7 @@ function ProductsScreen(props) {
         dispatch(listProducts());
         return () => {
         };
-    }, [successSave, successDelete]);
+    }, [successSave, successDelete, dispatch]);
 
     const openModal = (product) => {
         setModalVisible(true);
