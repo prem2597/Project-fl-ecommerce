@@ -1,3 +1,4 @@
 export default {
-    MONGODB_URL: process.env.MONGODB_URL || 'mongodb://localhost/ecom'
+    MONGODB_URL: process.env.MONGODB_URL || 'mongodb://localhost/ecom',
+    JWT_SECRET: process.env.JWT_SECRET || 'smsecret'
 }
