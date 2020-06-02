@@ -70,6 +70,6 @@ router.get("/createadmin" , async (req,res) => {
 
     }
    
-})
+});
 
 export default router;

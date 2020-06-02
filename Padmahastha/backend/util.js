@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken';
+import jwt , {decode} from 'jsonwebtoken';
 import config  from './config';
 const getToken = (user) => {
     return jwt.sign( {
@@ -24,7 +24,8 @@ const isAuth = (req,res,next) => {
                 return res.status(401).send({msg: "Invalid Token"});
 
             }
-            req.user = token;
+            // req.user = token;
+            req.user = decode;
             next();
             return
         })

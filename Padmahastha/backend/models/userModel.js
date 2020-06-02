@@ -2,10 +2,10 @@ import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema( {
     name : {type:String, required:true},
-    email : {type: String, required:true, unique:true,dropDups:true},
+    email : {type: String, required:true, unique:true,index:true,dropDups:true},
     // email : {type:String,required:true,unique:true},
     password : {type: String, required:true},
-    isAdmin : {type:Boolean,required : true, default : false}
+    isAdmin : {type:Boolean,required : true, default : false},
 
 });
 
