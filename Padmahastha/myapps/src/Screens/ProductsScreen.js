@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import {useEffect,useState } from 'react';
 import { useSelector, useDispatch, } from 'react-redux';
-import { signin } from '../actions/userActions';
-import { saveProduct, listProducts } from '../actions/productActions';
+// import { signin } from '../actions/userActions';
+import { saveProduct, listProducts, deleteProduct } from '../actions/productActions';
 
 
 
@@ -22,16 +22,24 @@ function ProductsScreen(props) {
     const productList = useSelector(state => state.productList);
     const {loading,products,error} = productList; 
 
+    const productDelete = useSelector(state=>state.productDelete);  
+    const { loading: loadingDelete, success: successDelete, error: errorDelete } = productDelete;
+
+
     const productSave = useSelector(state=>state.productSave);  
-    const {loading : loadingSave,success:successsave,error:errorsave} = productSave;
+  
+    const {loading : loadingSave, success : successSave , error : errorSave} = productSave;
     const dispatch = useDispatch();
 
     useEffect(() => {
+        if(successSave) {
+            setModalVisible(false);
+        }
        dispatch(listProducts());
         return () => {
         // effect
       };
-    }, []);
+    }, [successSave,successDelete]);
 
     const openModal = (product) => {
         setModalVisible(true)
@@ -56,7 +64,10 @@ function ProductsScreen(props) {
      dispatch(saveProduct({ _id: id,name,price, image, brand,category,
         countInStock,description}));
  }
+const deleteHandler = (product) => {
+    dispatch(deleteProduct(product._id));
 
+}
     return <div className="content content-margined">
 
                 <div className="product-header">
@@ -75,10 +86,10 @@ function ProductsScreen(props) {
             </li>
             <li>
                 {loadingSave && <div>Loading...</div>}
-                {errorsave && <div>{errorsave}</div>}
+                {errorSave && <div>{errorSave}</div>}
             </li>
             <li>
-                <label htmFor="name">
+                <label htmlFor="name">
                     Name
                 </label>
                 <input type = "text" name= "name"  value ={name} id="name" onChange={(e) => setName(e.target.value)}>
@@ -86,7 +97,7 @@ function ProductsScreen(props) {
                 </input>
             </li>
             <li>
-                <label htmFor="price">
+                <label htmlFor="price">
                     Price
                 </label>
                 <input type = "text" name= "price"value={price} id="price" onChange={(e) => setPrice(e.target.value)}>
@@ -94,7 +105,7 @@ function ProductsScreen(props) {
                 </input>
             </li>
             <li>
-                <label htmFor="image">
+                <label htmlFor="image">
                     Image
                 </label>
                 <input type = "text" name= "image" value={image} id="image" onChange={(e) => setImage(e.target.value)}>
@@ -102,7 +113,7 @@ function ProductsScreen(props) {
                 </input>
             </li>
             <li>
-                <label htmFor="brand">
+                <label htmlFor="brand">
                     Brand
                 </label>
                 <input type = "text" name= "brand"  value={brand} id="brand" onChange={(e) => setBrand(e.target.value)}>
@@ -110,7 +121,7 @@ function ProductsScreen(props) {
                 </input>
             </li>
             <li>
-                <label htmFor="name">
+                <label htmlFor="category">
                     Category
                 </label>
                 <input type = "text" name= "category"  value = {category} id="category" onChange={(e) => setCategory(e.target.value)}>
@@ -118,7 +129,7 @@ function ProductsScreen(props) {
                 </input>
             </li>
             <li>
-                <label htmFor="countInStock">
+                <label htmlFor="countInStock">
                     CountInStock
                 </label>
                 <input type = "text" name= "countInStock"  value={countInStock} id="countInStock" onChange={(e) => setCountInStock(e.target.value)}>
@@ -129,10 +140,10 @@ function ProductsScreen(props) {
             
 
             <li>
-                <label htmFor="name">
+                <label htmlFor="description">
                     Description
                 </label>
-                <textarea name= "description" id="name" onChange={(e) => setDescription(e.target.value)}>
+                <textarea name= "description" id="description" onChange={(e) => setDescription(e.target.value)}>
 
                 </textarea>
             </li>
@@ -168,8 +179,8 @@ function ProductsScreen(props) {
                            </tr>
                        </thead>
                        <tbody>
-                           {products.map(product =>
-                              <tr>
+                           {products.map(product => (
+                              <tr key = {product._id}>
                               <td>{product._id}</td>
                               <td>{product.name}</td>
                               <td>{product.price}</td>
@@ -177,12 +188,12 @@ function ProductsScreen(props) {
                               <td>{product.brand}</td>
                               <td>
                                   <button onClick={() => openModal(product)}>Edit</button>
-                                  <button > Delete</button>
+                                  <button  onClick={() => deleteHandler(product)} > Delete</button>
                               </td>
-                          </tr> )}
+                          </tr> ))}
                      
 
-                       </tbody>
+                       </tbody> 
                    </table>
 
 

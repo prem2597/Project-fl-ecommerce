@@ -43,7 +43,7 @@ function RegisterScreen(props) {
                 </li>
 
                 <li>
-                    <label htmFor="name">
+                    <label htmlFor="name">
                         Name
                     </label>
                     <input type = "name" name= "name" id="name" onChange={(e) => setName(e.target.value)}>
@@ -51,7 +51,7 @@ function RegisterScreen(props) {
                     </input>
                 </li>
                 <li>
-                    <label htmFor="email">
+                    <label htmlFor="email">
                         Email
                     </label>
                     <input type = "email" name= "email" id="email" onChange={(e) => setEmail(e.target.value)}>
@@ -59,13 +59,13 @@ function RegisterScreen(props) {
                     </input>
                 </li>
                 <li>
-                    <label htmFor="password">Password</label>
+                    <label htmlFor="password">Password</label>
                     <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
 
                     </input>
                 </li>
                 <li>
-                    <label htmFor="rePassword">Re-Password</label>
+                    <label htmlFor="rePassword">Re-Password</label>
                     <input type="rePassword" id="rePassword" name="rePassword" onChange={(e) => setRePassword(e.target.value)}>
 
                     </input>
