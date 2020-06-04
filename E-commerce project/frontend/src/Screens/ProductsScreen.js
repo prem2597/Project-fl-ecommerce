@@ -13,8 +13,6 @@ function ProductsScreen(props) {
     const [category, setCategory] = useState('');
     const [countInStock, setCountInStock] = useState('');
     const [description, setDescription] = useState('');
-    const [rating, setRating] = useState('');
-    const [numReview, setNumReview] = useState('');
 
     const productSave = useSelector(state => state.productSave);
     const { loading: loadingSave, success: successSave, error: errorSave } = productSave;
@@ -31,7 +29,7 @@ function ProductsScreen(props) {
         e.preventDefault();
         dispatch(saveProduct({ 
             name, price, image, brand, category, 
-            countInStock, description, rating, numReview 
+            countInStock, description
         }));
     }
     return <div className="form">
@@ -78,16 +76,6 @@ function ProductsScreen(props) {
                     <label htmlFor="description">Description</label>
                     <textarea type="text" name="description" id="description" onChange={(e) => setDescription(e.target.value)}>
                     </textarea>
-                </li>
-                <li>
-                    <label htmlFor="rating">Rating</label>
-                    <input type="text" name="rating" id="rating" onChange={(e) => setRating(e.target.value)}>
-                    </input>
-                </li>
-                <li>
-                    <label htmlFor="numReview">Num of Review</label>
-                    <input type="text" name="numReview" id="numReview" onChange={(e) => setNumReview(e.target.value)}>
-                    </input>
                 </li>
                 <li><button type="submit" className="button primary">Create</button></li>
             </ul>
