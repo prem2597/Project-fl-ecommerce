@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import CheckoutSteps from '../Components/CheckoutSteps';
+import CheckoutSteps from '../CheckoutSteps';
 function PlaceOrderScreen(props) {
 
     const cart = useSelector(state => state.cart);
