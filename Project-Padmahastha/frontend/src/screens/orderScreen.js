@@ -8,12 +8,20 @@ import PaypalButton from '../components/PaypalButton'
 
 function OrderScreen(props) {
 
+    const orderPay = useSelector(state => state.orderPay);
+    const { loading: loadingPay, success: successPay, error: errorPay } = orderPay;
+    
     const dispatch = useDispatch();
+
     useEffect(() => {
-      dispatch(detailsOrder(props.match.params.id));
-      return () => {
-      };
-    }, [dispatch, props.match.params.id]);
+        if (successPay) {
+            props.history.push("/profile");
+        } else {
+            dispatch(detailsOrder(props.match.params.id));
+        }
+        return () => {
+        };
+    }, [dispatch, props.match.params.id, successPay]);
 
     const handleSuccessPayment = (paymentResult) => {
         dispatch(payOrder(order, paymentResult));
