@@ -3,7 +3,8 @@ import { addToCart, removeFromCart } from '../actions/cartActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/checkoutSteps';
-import { createOrder, detailsOrder } from '../actions/orderActions';
+import { createOrder, detailsOrder, payOrder } from '../actions/orderActions';
+import PaypalButton from '../components/PaypalButton'
 
 function OrderScreen(props) {
 
@@ -13,6 +14,10 @@ function OrderScreen(props) {
       return () => {
       };
     }, [dispatch, props.match.params.id]);
+
+    const handleSuccessPayment = (paymentResult) => {
+        dispatch(payOrder(order, paymentResult));
+    }
 
     const orderDetails = useSelector(state => state.orderDetails);
     const { loading, order, error } = orderDetails;
