@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/checkoutSteps';
 import { createOrder, detailsOrder } from '../actions/orderActions';
 
-function orderScreen(props) {
+function OrderScreen(props) {
 
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(detailsOrder(props.match.params.id));
       return () => {
       };
-    }, []);
+    }, [dispatch, props.match.params.id]);
 
     const orderDetails = useSelector(state => state.orderDetails);
     const { loading, order, error } = orderDetails;
@@ -102,5 +102,5 @@ function orderScreen(props) {
     </div>
 }
 
-export default orderScreen;
+export default OrderScreen;
 

@@ -11,7 +11,7 @@ import ProductsScreen from './screens/productsScreen';
 import ShippingScreen from './screens/shippingScreen';
 import PaymentScreen from './screens/paymentScreen';
 import PlaceOrderScreen from './screens/placeOrderScreen';
-import orderScreen from './screens/orderScreen';
+import OrderScreen from './screens/orderScreen';
 
 function App() {
 
@@ -64,7 +64,7 @@ function App() {
         </aside>
         <main className="main">
           <div className="content">
-            <Route path="/order/:id" component={orderScreen} />
+            <Route path="/order/:id" component={OrderScreen} />
             <Route path="/products" component={ProductsScreen} />
             <Route path="/shipping" component={ShippingScreen} />
             <Route path="/payment" component={PaymentScreen} />
