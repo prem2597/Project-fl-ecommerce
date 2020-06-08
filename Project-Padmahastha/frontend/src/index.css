@@ -361,7 +361,13 @@ tbody>tr:nth-child(odd){
   margin-bottom: 1rem;
 }
 .placeorder-action > ul > li:last-child{
-    font-size: 2rem;
-    font-weight: bold;
-    color: #c04000;
-} 
+  font-size: 2rem;
+  font-weight: bold;
+  color: #c04000;
+}
+
+/* payment option styles */
+.placeorder-actions-payment > div {
+  width: 100%;
+}
+
