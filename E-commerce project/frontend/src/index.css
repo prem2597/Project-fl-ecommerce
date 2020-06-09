@@ -287,7 +287,6 @@ a:hover{
 }
 
 /* forms */
-
 .form {
 	display: flex;
 	justify-content: center;
@@ -317,7 +316,6 @@ input {
 }
 
 /* Products */
-
 .product-header {
 	display: flex;
 	justify-content: space-between;
@@ -341,7 +339,6 @@ tbody>tr:nth-child(odd) {
 }
 
 /* Checkout Steps */
-
 .checkout-steps{
 	display: flex;
 	justify-content: space-between;
@@ -362,7 +359,6 @@ tbody>tr:nth-child(odd) {
 }
   
 /* Place Order */
-
 .placeorder{
 	display: flex;
 	flex-grow: wrap;
@@ -411,6 +407,20 @@ tbody>tr:nth-child(odd) {
 	  color: #c04000;
 }
 
-.placeorder-actions-payment > div {
+.placeholder-actions-payment > div {
 	width: 100%;
+}
+
+/* Profile */
+.profile{
+	display: flex;
+	flex-wrap: wrap;
+}
+  
+.profile-info{
+	flex: 1 1 30rem;
+}
+
+.profile-orders{
+	flex: 3 1 60rem;
 }
