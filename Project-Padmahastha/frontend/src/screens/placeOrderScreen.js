@@ -37,9 +37,9 @@ function PlaceOrderScreen(props) {
         }
     }, [success]);
 
-    const checkoutHandler = () => {
-        props.history.push("/signin?redirect=shipping");
-    }
+    // const checkoutHandler = () => {
+    //     props.history.push("/signin?redirect=shipping");
+    // }
 
     return <div>
         <CheckoutSteps step1 step2 step3 step4 ></CheckoutSteps>
