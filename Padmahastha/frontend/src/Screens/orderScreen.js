@@ -1,24 +1,33 @@
 import React, { useEffect } from 'react';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { createOrder, detailsOrder } from '../actions/orderActions';
-
+import CheckoutSteps from '../Components/CheckoutSteps';
+import { createOrder, detailsOrder, payOrder } from '../actions/orderActions';
+import PaypalButton from '../Components/PaypalButton';
 function OrderScreen(props) {
 
-
+  const orderPay = useSelector(state => state.orderPay);
+  const { loading: loadingPay, success: successPay, error: errorPay } = orderPay;
   const dispatch = useDispatch();
   useEffect(() => {
-   
+    if (successPay) {
+      props.history.push("/profile");
+    } else {
       dispatch(detailsOrder(props.match.params.id));
-    
+    }
     return () => {
     };
-  }, []);
+  }, [successPay]);
 
+  const handleSuccessPayment = (paymentResult) => {
+    dispatch(payOrder(order, paymentResult));
+  }
 
   const orderDetails = useSelector(state => state.orderDetails);
   const { loading, order, error } = orderDetails;
-  const payHandler = () => { };
+  // const payHandler = () => { };
+  console.log(orderDetails)
 
   return loading ? <div>Loading ...</div> : error ? <div>{error}</div> :
 
@@ -91,10 +100,14 @@ function OrderScreen(props) {
         </div>
         <div className="placeorder-action">
           <ul>
-              <li>
-                  <button className = "button primary full-width" onClick={payHandler}>Pay Now </button>
-              </li>
-          
+            <li className="placeorder-actions-payment">
+              {loadingPay && <div>Finishing Payment...</div>}
+              {!order.isPaid &&
+                <PaypalButton
+                  amount={order.totalPrice}
+                  onSuccess={handleSuccessPayment} />
+              }
+            </li>
             <li>
               <h3>Order Summary</h3>
             </li>

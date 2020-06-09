@@ -403,10 +403,12 @@ tbody>tr:nth-child(odd) {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 1rem;
-}
-
-.placeorder-action > ul > li:last-child{
+  }
+  .placeorder-action > ul > li:last-child{
 	  font-size: 2rem;
 	  font-weight: bold;
 	  color: #c04000;
-}
+  }
+  .placeorder-actions-payment > div {
+	width: 100%;
+  }
