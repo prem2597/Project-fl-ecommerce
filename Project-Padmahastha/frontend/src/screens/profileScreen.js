@@ -14,6 +14,7 @@ function ProfileScreen(props) {
 
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
+    
     const handleLogout = () => {
         dispatch(logout());
         props.history.push("/signin");
@@ -23,11 +24,13 @@ function ProfileScreen(props) {
         e.preventDefault();
         dispatch(update({ userId: userInfo._id, email, name, password }))
     }
+
     const userUpdate = useSelector(state => state.userUpdate);
     const { loading, success, error } = userUpdate;
 
     const myOrderList = useSelector(state => state.myOrderList);
     const { loading: loadingOrders, orders, error: errorOrders } = myOrderList;
+    
     useEffect(() => {
         if (userInfo) {
             setEmail(userInfo.email);
