@@ -40,7 +40,7 @@ function HomeScreen(props) {
     <ul className="filter">
       <li>
         <form onSubmit={submitHandler}>
-          <input name="searchKeyword" onChange={(e) => setSearchKeyword(e.target.value)}></input>
+          <input name="searchKeyword" onChange={(e) => setSearchKeyword(e.target.value)} />
           <button type="submit">Search</button>
         </form>
       </li>
