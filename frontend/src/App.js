@@ -1,6 +1,4 @@
 import React from 'react';
-// import logo from './logo.svg';
-// import data from './data';
 import './App.css';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
@@ -10,6 +8,9 @@ import SigninScreen from './screens/SigninScreen';
 import { useSelector } from 'react-redux';
 import RegisterScreen from './screens/RegisterScreen';
 import productsScreen from './screens/ProductsScreen';
+import ShippingScreen from './screens/ShippingScreen';
+import PaymentScreen from './screens/PaymentScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 
 function App() {
   const userSignin = useSelector(state=>state.userSignin);
@@ -56,10 +57,13 @@ function App() {
       </aside>
       <main className="main">
         <div className="content">
-          <Route path="/product" component={productsScreen}/>
+          <Route path="/products" component={productsScreen}/>
+          <Route path ="/shipping" component={ShippingScreen}/>
+          <Route path ="/payment" component={PaymentScreen}/>
+          <Route path ="/placeorder" component={PlaceOrderScreen}/>
           <Route path="/signin" component={SigninScreen}/>
           <Route path="/register" component={RegisterScreen}/>
-          <Route path="/products/:id" component={ProductScreen}/>
+          <Route path="/product/:id" component={ProductScreen}/>
           <Route path="/cart/:id?" component={CartScreen}/>
           <Route path="/"exact={true} component={HomeScreen}/>
           

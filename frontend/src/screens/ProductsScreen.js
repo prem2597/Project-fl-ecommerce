@@ -132,7 +132,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signin } from '../actions/userActions';
-import { saveProduct, listProducts} from '../actions/productActions';
+import { saveProduct, listProducts,deleteProduct} from '../actions/productActions';
 
 function ProductsScreen(props) {
 
@@ -153,9 +153,8 @@ function ProductsScreen(props) {
     const productSave = useSelector(state => state.productSave);
     const { loading: loadingSave, success: successSave, error: errorSave } = productSave;
 
-    //const productDelete = useSelector(state => state.productDelete);
-    //const { loading: loadingDelete, success: successDelete, error: errorDelete } = productDelete;
-
+    const productDelete = useSelector(state => state.productDelete);
+    const { loading: loadingDelete, success: successDelete, error: errorDelete } = productDelete;
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -166,7 +165,7 @@ function ProductsScreen(props) {
         return () => {
             //
         };
-    }, [successSave]);
+    }, [successSave,successDelete]);
 
     const openModal = (product) => {
         setModalVisible(true);
@@ -189,9 +188,9 @@ function ProductsScreen(props) {
         }));
     }
 
-    // const deleteHandler = (product) => {
-    //     dispatch(deleteProduct(product._id));
-    // }
+    const deleteHandler = (product) => {
+        dispatch(deleteProduct(product._id));
+    }
     return <div className="content content-margined">
         <div className="product-header">
             <h3>Products</h3>
@@ -204,7 +203,7 @@ function ProductsScreen(props) {
                     <li><h2>Create Product</h2></li>
                     <li>
                         {loadingSave && <div>Loading...</div>}
-                        {errorSave && <div>{errorSave}</div>}
+                        {errorSave && <div>{error}</div>}
                     </li>
                     <li>
                         <label htmlFor="name">Name</label>
@@ -269,7 +268,7 @@ function ProductsScreen(props) {
                             <td>
                                 <button className="button" onClick={() => openModal(product)}>Edit</button>
                                 {'  '}
-                                <button className="button">Delete</button>
+                                <button className="button" onClick={() => deleteHandler(product)} >Delete</button>
                             </td>
                         </tr>))
                     }

@@ -1,6 +1,6 @@
 import express from 'express';
-import User from '../models/userModel'
-
+import User from '../models/userModel';
+import { getToken } from '../util';
 const router = express.Router();
 
 router.post('/signin',async(req,res)=>{
