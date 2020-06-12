@@ -4,7 +4,18 @@ import './App.css';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
+import SigninScreen from './screens/SigninScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import { useSelector } from 'react-redux';
+import ProductsScreen from './screens/ProductsScreen';
+import ShippingScreen from './screens/ShippingScreen';
+import PaymentScreen from './screens/PaymentScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 function App() {
+
+  const userSignin = useSelector(state=> state.userSignin);
+  const {userInfo} = userSignin;
+
 
   const openMenu = () =>{
     document.querySelector(".sidebar").classList.add("open");
@@ -25,7 +36,13 @@ function App() {
         </div>
         <div className="header-links">
             <a href="cart.html">Cart</a>
-            <a href="signin.html"> Sign In </a>
+            {
+                userInfo ? <Link to = "/profile"> {userInfo.name}</Link>:
+
+                <Link to="/signin" > Sign In </Link>
+            }
+            {/* <Link to="/signin"> </Link> */}
+            {/* <a href="signin.html"> Sign In </a> */}
         </div>
 
         </header>
@@ -46,15 +63,26 @@ function App() {
         </aside>
         <main className="main">
             <div className="content">
-                <Route path ="/" exact={true} component={HomeScreen}/>
-                <Route path="/cart/:id?" component={CartScreen}/>  
+            <Route path = "/products" component = {ProductsScreen}/>
+            <Route path = "/shipping" component = {ShippingScreen}/>
+            <Route path = "/payment" component = {PaymentScreen}/>
+            <Route path = "/placeorder" component = {PlaceOrderScreen}/>
 
+
+                  
+                <Route path = "/signin" component = {SigninScreen}/>
+                <Route path = "/register" component = {RegisterScreen}/>
+                
                 <Route path="/product/:id" component={ProductScreen}/>  
+                  
+                <Route path="/cart/:id?" component={CartScreen}/>  
+                <Route path ="/" exact={true} component={HomeScreen}/>
+                 
             </div>
         
         </main>
         <footer className="footer">
-            All Rights Reserved.
+            All Rights Reserved. 
         </footer>
     </div>
     </BrowserRouter>

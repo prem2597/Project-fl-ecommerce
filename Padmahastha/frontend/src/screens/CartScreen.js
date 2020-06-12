@@ -62,7 +62,7 @@ useEffect(() => {
                              
 
                                  </select>
-                                 <button type="button" classname="button" onClick={() => removeFromCartHandler(item.product)}>
+                                 <button type="button" className="button" onClick={() => removeFromCartHandler(item.product)}>
                                      Delete
                                  </button>
                          </div>
