@@ -33,6 +33,11 @@ router.put('/:id', isAuth, async (req, res) => {
 	}
   
   }); 
+  /**
+   * @signin route for signing in for users
+   * @email of the users who is trying to signin
+   * @password odf the user who is trying to signin
+   */
 router.post('/signin', async (req, res) => {
     const signinUser = await User.findOne({
       	email: req.body.email,

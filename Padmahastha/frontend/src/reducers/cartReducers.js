@@ -1,5 +1,10 @@
 import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_PAYMENT, CART_SAVE_SHIPPING } from "../constants/cartConstants";
-
+/**
+ * 
+ * @param {Stores the state of the carteditems} state 
+ * @param {* the action may be to add or delete an item,
+ * and saving the shipiing and paymnet} action 
+ */
 function cartReducer(state = { cartItems: [] }, action) {
     switch (action.type) {
         case CART_ADD_ITEM:

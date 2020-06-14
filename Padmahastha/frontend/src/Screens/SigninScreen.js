@@ -46,9 +46,9 @@ function SigninScreen(props) {
                     </input>
                 </li>
                 <li><button type="submit" className="button primary">Signin</button></li>
-                <li>New to amazona?</li>
+                <li>New to Padmahastha?</li>
                 <li>
-                    <Link to={redirect === "/" ? "register" : "register?redirect=" + redirect} className="button secondary text-center" >Create your amazona account</Link>
+                    <Link to={redirect === "/" ? "register" : "register?redirect=" + redirect} className="button secondary text-center" >Create your Padmahastha account</Link>
                 </li>
             </ul>
         </form>

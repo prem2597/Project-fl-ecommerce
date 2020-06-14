@@ -1,5 +1,9 @@
 import { ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_CREATE_FAIL, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_REQUEST, ORDER_DETAILS_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS, ORDER_PAY_FAIL, MY_ORDER_LIST_REQUEST, MY_ORDER_LIST_SUCCESS, MY_ORDER_LIST_FAIL, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_LIST_FAIL, ORDER_DELETE_REQUEST, ORDER_DELETE_SUCCESS, ORDER_DELETE_FAIL } from "../constants/orderConstants";
-
+/**
+ * 
+ * @param {gives the states of the order} state 
+ * @param {* to create an order,and response} action 
+ */
 function orderCreateReducer(state = {}, action) {
     switch (action.type) {
       case ORDER_CREATE_REQUEST:
@@ -11,7 +15,12 @@ function orderCreateReducer(state = {}, action) {
       default: return state;
     }
   }
-  
+  /**
+   * 
+   * @param {States of the order details} state 
+   * @param {*the response} action 
+   * 
+   */
   function orderDetailsReducer(state = {
     order: {
       orderItems: [],
@@ -30,7 +39,11 @@ function orderCreateReducer(state = {}, action) {
     }
   }
 
-
+  /**
+   * 
+   * @param {States of the users orders list} state 
+   * @param {*the responses of the state changes} action 
+   */
   function myOrderListReducer(state = {
     orders: []
   }, action) {

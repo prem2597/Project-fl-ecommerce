@@ -27,9 +27,11 @@ mongoose.connect(mongodbUrl, {
 
 /**
  * The express js is now connection to our app
- * And the @"/api/users" is used in userRoute
+ * @api/users is used in userRoute
  * And the @"/api/products" is used in productRoute used to displsy the product related information
+ * @/api/config/paypal the route for connecting to the paypal gateway method.
  */
+
 const app = express();
 app.use(bodyParser.json());
 app.use("/api/users", userRoute);

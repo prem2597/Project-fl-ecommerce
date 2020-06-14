@@ -10,7 +10,10 @@ const getToken = (user) => {
         expiresIn: '48h'
     })
 }
-
+/**
+ * @isAuth is a constant which stores
+ * whether the user is authenticated or not
+ */
 const isAuth = (req, res, next) => {
     const token = req.headers.authorization;
     if (token) {
@@ -29,6 +32,9 @@ const isAuth = (req, res, next) => {
     }
 }
 
+/**
+ * @isAdmin denotes whether the user is admin or not
+ */
 const isAdmin = (req, res, next) => {
     if (req.user && req.user.isAdmin) {
         return next();

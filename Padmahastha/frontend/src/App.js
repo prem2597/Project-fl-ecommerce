@@ -19,6 +19,7 @@ import PlaceOrderScreen from './Screens/PlaceOrderScreen';
 import OrderScreen from './Screens/orderScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import OrdersScreen from './Screens/OrdersSreeen';
+// import brandHomeScreen from './Screens/brandHome';
 
 function App() {
 
@@ -35,7 +36,10 @@ function App() {
 	 */
   	const closeMenu = () => {
     	document.querySelector(".sidebar").classList.remove("open")
-  	}
+	  }
+	  /**
+	   * @header which is commonly seen in all the pages
+	   */
 	return (
     	<BrowserRouter>
       		<div className="grid-container">
@@ -97,7 +101,9 @@ function App() {
             			<Route path="/product/:id" component={ProductScreen} />
 						<Route path="/cart/:id?" component={CartScreen} />
 						<Route path="/category/:id" component={HomeScreen} />
+						{/* <Route path ="/brand/sid" component={ProductScreen} /> */}
             			<Route path="/" exact={true} component={HomeScreen} />
+						{/* <Route path="/" exact={true} component={brandHomeScreen} /> */}
           			</div>
         		</main>
         		<footer className="footer">

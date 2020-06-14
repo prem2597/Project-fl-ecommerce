@@ -32,7 +32,7 @@ const detailsProduct = (productId) => async (dispatch) => {
     }
 }
 
-
+//security tokens
 const saveProduct = (product) => async (dispatch, getState) => {
     try {
         dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product });
@@ -75,4 +75,4 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
     }
 }
 
-export { listProducts, detailsProduct, saveProduct, deleteProduct }
+export { listProducts, detailsProduct, saveProduct, deleteProduct } 

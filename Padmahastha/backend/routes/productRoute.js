@@ -6,8 +6,12 @@ const router = express.Router();
 
 /**
  * Whenever the method is get all the products are displayed.
- * @async 
- * @products
+ * @
+ * @category is the catogory to which the corresponding product belongs to
+ * @searchKeyword the letter/word on which the search happens
+ * @sortOrder a constant which stores in which order the sorting must take place
+ * and idsplays accordingly
+ * @products the products sorted based on the sort order and category given
  */
 router.get("/", async (req, res) => {
 	// const products = await Product.find({});
