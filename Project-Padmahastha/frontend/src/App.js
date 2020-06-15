@@ -14,6 +14,7 @@ import PlaceOrderScreen from './screens/placeOrderScreen';
 import OrderScreen from './screens/orderScreen';
 import OrdersScreen from './screens/OrdersScreen';
 import ProfileScreen from './screens/profileScreen';
+import HomeScreen1 from './screens/HomeScreen1';
 
 function App() {
 
@@ -41,6 +42,8 @@ function App() {
           </div>
           <div className="header-links">
             <a href="cart.html">Cart</a>
+            <Link to="/hm">ShopNow</Link>
+           
             {
               userInfo ? <Link to="/profile">{userInfo.name}</Link>:
 
@@ -89,7 +92,8 @@ function App() {
             <Route path="/product/:id" component={ProductScreen} />
             <Route path="/cart/:id?" component={CartScreen} />
             <Route path="/category/:id" component={HomeScreen} />
-            <Route path="/" exact={true} component={HomeScreen} />
+            <Route path="/" exact={true} component={HomeScreen1} />
+            <Route path="/hm" exact={true} component={HomeScreen} />
           </div>
         </main>
         <footer className="footer">
