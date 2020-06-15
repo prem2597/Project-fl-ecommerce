@@ -20,6 +20,9 @@ function App() {
   const userSignin = useSelector(state => state.userSignin);
   const {userInfo} = userSignin;
 
+  const cart = useSelector(state => state.cart);
+  const { cartItems } = cart;
+
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open");
   }
@@ -40,16 +43,23 @@ function App() {
             {/* <a href="index.html">Padmahastha</a> */}
           </div>
           <div className="header-links">
-            <a href="cart.html">Cart</a>
             {
-              userInfo ? <Link to="/profile">{userInfo.name}</Link>:
+              cartItems.length === 0 ?
+              <div></div>
+              :
+              <div className="badge">{cartItems.length}</div>
+            }
+            <Link to="/cart"><strong>Cart</strong></Link>
+            {/* <a href="cart.html"><strong>Cart</strong></a> */}
+            {
+              userInfo ? <Link to="/profile"><strong>{userInfo.name}</strong></Link>:
 
-                <Link to="/signin">Sign In</Link>
+                <Link to="/signin"><strong>Sign In</strong></Link>
 
             }
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
-                <a href="#">Admin</a>
+                <a href="#"><strong>Admin</strong></a>
                 <ul className="dropdown-content">
                   <li>
                     <Link to="/orders">Orders</Link>

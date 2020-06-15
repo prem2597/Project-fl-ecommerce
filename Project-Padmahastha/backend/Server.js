@@ -1,5 +1,6 @@
 import express from 'express';
 import data from './data';
+import path from 'path';
 import dotenv from 'dotenv';
 import config from './config';
 import mongoose from 'mongoose';
@@ -39,4 +40,10 @@ app.get("/api/config/paypal", (req, res) => {
 //     res.send(data.products);
 // });
 
-app.listen(5000, () => { console.log("Server started at http://localhost:5000") });
+app.use(express.static(path.join(__dirname, '/../frontend/build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(`${__dirname}/../frontend/build/index.html`));
+})
+
+app.listen(config.PORT, () => { console.log("Server started at http://localhost:5000") });
+

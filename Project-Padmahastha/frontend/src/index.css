@@ -66,6 +66,21 @@ a {
 a:hover {
   color: #ff8000;
 }
+.badge {
+  display: inline;
+  position: absolute;
+  width: 1rem;
+  padding: .3rem;
+  border-radius: 50%;
+  font-size: 1rem;
+  text-align: center;
+  background-color: #f40;
+  color: #fefefe;
+  height: 1rem;
+  margin-left: -2px;
+  top: 5px;
+  line-height: 1rem;
+}
 
 
 /* Home Screen */
