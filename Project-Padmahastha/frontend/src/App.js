@@ -41,7 +41,8 @@ function App() {
             {/* <a href="index.html">Padmahastha</a> */}
           </div>
           <div className="header-links">
-            <a href="cart.html">Cart</a>
+            {/* <a href="cart.html">Cart</a> */}
+            <Link to="/cart/:id?">Cart</Link>
             <Link to="/hm">ShopNow</Link>
            
             {
