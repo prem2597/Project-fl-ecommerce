@@ -14,23 +14,36 @@ import PlaceOrderScreen from './screens/placeOrderScreen';
 import OrderScreen from './screens/orderScreen';
 import OrdersScreen from './screens/OrdersScreen';
 import ProfileScreen from './screens/profileScreen';
-
+/**
+ * This  App function will be rendered into the html page in the root id.
+ * This function consists of header and the footer.
+ * The navigation bar is also included in the header.
+ * Here a hamburger menu is also included where the categories are displayed.
+ * The BrowserRoutes are used to navigate from one page to another.
+ */
 function App() {
-
+  /**
+   * This useSelector function will extract the data from redux store state.
+   * The useSelector will take the current state as the argument and returns
+   * the required state.
+   * Redux generally used to maintian the states of the entire application.
+   */
   const userSignin = useSelector(state => state.userSignin);
   const {userInfo} = userSignin;
-
   const cart = useSelector(state => state.cart);
   const { cartItems } = cart;
-
+  /**
+   * The openMenu and close menu functions are used for hamburger menu.
+   */
   const openMenu = () => {
     document.querySelector(".sidebar").classList.add("open");
   }
-
   const closeMenu = () => {
     document.querySelector(".sidebar").classList.remove("open");
   }
-
+  /**
+   * This will return the data about how the DOM should look like.
+   */
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -40,7 +53,6 @@ function App() {
               &#9776;
             </button>
             <Link to="/" >Padmahastha</Link>
-            {/* <a href="index.html">Padmahastha</a> */}
           </div>
           <div className="header-links">
             {
@@ -50,16 +62,13 @@ function App() {
               <div className="badge">{cartItems.length}</div>
             }
             <Link to="/cart"><strong>Cart</strong></Link>
-            {/* <a href="cart.html"><strong>Cart</strong></a> */}
             {
               userInfo ? <Link to="/profile"><strong>{userInfo.name}</strong></Link>:
-
                 <Link to="/signin"><strong>Sign In</strong></Link>
-
             }
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
-                <a href="#"><strong>Admin</strong></a>
+                <Link to="#"><strong>Admin</strong></Link>
                 <ul className="dropdown-content">
                   <li>
                     <Link to="/orders">Orders</Link>
