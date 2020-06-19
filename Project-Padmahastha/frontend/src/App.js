@@ -92,6 +92,7 @@ function App() {
             <Route path="/product/:id" component={ProductScreen} />
             <Route path="/cart/:id?" component={CartScreen} />
             <Route path="/category/:id" component={HomeScreen} />
+            <Route path="/brand/:name" component={HomeScreen} />
             <Route path="/" exact={true} component={HomepageScreen} />
             <Route path="/homepage" exact={true} component={HomeScreen} />
             <Route path="/brand/:name" component={HomeScreen} />

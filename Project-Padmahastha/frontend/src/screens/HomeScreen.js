@@ -11,7 +11,6 @@ function HomeScreen(props) {
 
   const category = props.match.params.id ? props.match.params.id : '';
   const brand = props.match.params.name ? props.match.params.name : '';
-
   const productList = useSelector(state => state.productList);
   const { products, loading, error } = productList;
 

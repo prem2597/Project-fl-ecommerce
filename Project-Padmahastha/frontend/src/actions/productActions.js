@@ -6,7 +6,7 @@ const listProducts = (brand = '', category = '', searchKeyword = '', sortOrder =
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST });
         const { data } = await axios.get("/api/products?category=" + category +
-        "&searchKeyword=" + searchKeyword + "&sortOrder=" + sortOrder);
+        "&searchKeyword=" + searchKeyword + "&sortOrder=" + sortOrder + "&brand=" + brand);
         dispatch({type: PRODUCT_LIST_SUCCESS, payload: data});
     }
     catch(error){
