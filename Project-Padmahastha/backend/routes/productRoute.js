@@ -11,6 +11,8 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
     const category = req.query.category ? { category: req.query.category } : {};
+    const brand = req.query.brand;
+    console.log(brand)
     const searchKeyword = req.query.searchKeyword ? {
       name: {
         $regex: req.query.searchKeyword,
@@ -21,7 +23,8 @@ router.get("/", async (req, res) => {
       (req.query.sortOrder === 'lowest' ? { price: 1 } : { price: -1 })
       :
       { _id: -1 };
-    const products = await Product.find({ ...category, ...searchKeyword }).sort(sortOrder);
+
+    const products = await Product.find({ ...category, ...searchKeyword }).sort(sortOrder).find({brand});
     res.send(products);
 });
 
