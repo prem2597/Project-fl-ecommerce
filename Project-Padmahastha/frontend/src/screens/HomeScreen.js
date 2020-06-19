@@ -10,6 +10,8 @@ function HomeScreen(props) {
   const [sortOrder, setSortOrder] = useState('');
 
   const category = props.match.params.id ? props.match.params.id : '';
+  
+  const brand = props.match.params.name ? props.match.params.name : '';
 
   const productList = useSelector(state => state.productList);
   const { products, loading, error } = productList;
@@ -17,7 +19,7 @@ function HomeScreen(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(listProducts(category));
+    dispatch(listProducts(brand,category));
     return () => {
       //
     };

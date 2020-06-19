@@ -12,13 +12,13 @@ function HomeScreen1(props) {
         <li>
             <div className="product">
             
-                <Link to={'/hm'}>
+                <Link to={'/brands/' + brand.name}>
                     <img className="product-image" src={brand.image} alt="product" />
                 </Link>
-                <Link to={'/hm'}>Shop Now </Link>
+                <Link to={'/brands/' + brand.name}>Shop Now </Link>
 
                  <div className="product-name">
-                    <Link to={'/hm'}>{brand.name}</Link>
+                    <Link to={'/brands/' + brand.name}>{brand.name}</Link>
                 </div>
            
             

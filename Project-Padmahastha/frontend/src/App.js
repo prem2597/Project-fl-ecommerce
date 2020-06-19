@@ -95,6 +95,7 @@ function App() {
             <Route path="/category/:id" component={HomeScreen} />
             <Route path="/" exact={true} component={HomeScreen1} />
             <Route path="/hm" exact={true} component={HomeScreen} />
+            <Route path="/brands/:name" exact={true} component={HomeScreen} />
           </div>
         </main>
         <footer className="footer">
