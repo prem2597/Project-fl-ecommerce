@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { listProducts } from '../actions/productActions';
+import { listProducts, brandProducts } from '../actions/productActions';
 
 function HomeScreen(props) {
 
@@ -10,6 +10,7 @@ function HomeScreen(props) {
   const [sortOrder, setSortOrder] = useState('');
 
   const category = props.match.params.id ? props.match.params.id : '';
+  const brand = props.match.params.name ? props.match.params.name : '';
 
   const productList = useSelector(state => state.productList);
   const { products, loading, error } = productList;
@@ -17,7 +18,12 @@ function HomeScreen(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(listProducts(category));
+    if (brand) {
+      dispatch(brandProducts(brand));
+    }
+    else {
+      dispatch(listProducts(category));
+    }
     return () => {
       //
     };

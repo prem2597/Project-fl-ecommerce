@@ -1,34 +1,24 @@
-
 import React from 'react';
 import data from '../brands';
-import { Route, Link } from 'react-router-dom'
-import HomeScreen from './HomeScreen';
+import { Link } from 'react-router-dom'
 
-function HomepageScreen1(props) {
-
- 
+function HomepageScreen(props) {
   return <ul className="products">
     {
       data.brands.map(brand =>
         <li>
             <div className="product">
-            
-                <Link to={'/homepage'}>
+                <Link to={'/brand/' + brand.name}>
                     <img className="product-image" src={brand.image} alt="product" />
                 </Link>
-                <Link to={'/homepage'}>Shop Now </Link>
-
+                <Link to={'/brand/' + brand.name}>Shop Now </Link>
                  <div className="product-name">
-                    <Link to={'/homepage'}>{brand.name}</Link>
+                    <Link to={'/brand/' + brand.name}>{brand.name}</Link>
                 </div>
-           
-            
             </div>
         </li>)
     }
-
-
-
   </ul>
 }
-export default HomepageScreen1;
+
+export default HomepageScreen;
