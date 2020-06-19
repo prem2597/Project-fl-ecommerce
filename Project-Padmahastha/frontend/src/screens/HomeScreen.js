@@ -24,7 +24,7 @@ function HomeScreen(props) {
       dispatch(listProducts(category));
     }
     return () => {
-      //
+      // 
     };
   }, [category]);
 
