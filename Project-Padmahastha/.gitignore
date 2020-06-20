@@ -2,4 +2,7 @@
 .env
 /backend/config.js
 .eslintrc
+package-lock.json
+/dist
+
 
