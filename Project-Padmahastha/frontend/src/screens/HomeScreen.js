@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { listProducts } from '../actions/productActions';
+import { listProducts, brandProducts } from '../actions/productActions';
 
 function HomeScreen(props) {
 
@@ -19,7 +19,13 @@ function HomeScreen(props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(listProducts(brand,category));
+    if(brand) {
+      dispatch(brandProducts(brand))
+    }
+    else{
+      dispatch(listProducts(brand,category));
+    }
+   
     return () => {
       //
     };
@@ -27,12 +33,12 @@ function HomeScreen(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(listProducts(category, searchKeyword, sortOrder))
+    dispatch(listProducts(brand,category, searchKeyword, sortOrder))
   }
 
   const sortHandler = (e) => {
     setSortOrder(e.target.value);
-    dispatch(listProducts(category, searchKeyword, sortOrder))
+    dispatch(listProducts(brand,category, searchKeyword, sortOrder))
   }
 
   return <>
@@ -52,6 +58,7 @@ function HomeScreen(props) {
           <option value="">Newest</option>
           <option value="lowest">Lowest</option>
           <option value="highest">Highest</option>
+          {/* <option value="brand">Brands</option> */}
         </select>
       </li>
     </ul>
