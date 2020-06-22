@@ -42,8 +42,9 @@ function App() {
           </div>
           <div className="header-links">
             {/* <a href="cart.html">Cart</a> */}
+            <Link to="/allproducts">Shop</Link>
             <Link to="/cart/:id?">Cart</Link>
-            <Link to="/allproducts">ShopNow</Link>
+            
            
             {
               userInfo ? <Link to="/profile">{userInfo.name}</Link>:

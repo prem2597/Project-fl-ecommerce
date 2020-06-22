@@ -15,10 +15,15 @@ function HomeScreen1(props) {
                 <Link to={'/brands/' + brand.name}>
                     <img className="product-image" src={brand.image} alt="product" />
                 </Link>
+                {/* <div className="shop"> 
                 <Link to={'/brands/' + brand.name}>Shop Now </Link>
+                </div> */}
 
-                 <div className="product-name">
+                 <div className="shop">
                     <Link to={'/brands/' + brand.name}>{brand.name}</Link>
+                </div>
+                <div className="learn">
+                 <p> {brand.learnmore} </p>
                 </div>
            
             
@@ -30,4 +35,32 @@ function HomeScreen1(props) {
 
   </ul>
 }
+
+// function HomeScreen1(props) {
+
+ 
+//   return <ul className="brands">
+//     {
+//       data.brands.map(brand =>
+//         <li>
+//             <div className="brand">
+            
+//                 <Link to={'/brands/' + brand.name}>
+//                     <img className="brand-image" src={brand.image} alt="product" />
+//                 </Link>
+//                 <Link to={'/brands/' + brand.name}>Shop Now </Link>
+
+//                  <div className="brand-name">
+//                     <Link to={'/brands/' + brand.name}>{brand.name}</Link>
+//                 </div>
+           
+            
+//             </div>
+//         </li>)
+//     }
+
+
+
+//   </ul>
+// }
 export default HomeScreen1;
