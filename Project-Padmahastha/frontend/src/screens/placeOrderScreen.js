@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import { addToCart, removeFromCart } from '../actions/cartActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/checkoutSteps';
@@ -36,10 +35,6 @@ function PlaceOrderScreen(props) {
             props.history.push("/order/" + order._id);
         }
     }, [success]);
-
-    // const checkoutHandler = () => {
-    //     props.history.push("/signin?redirect=shipping");
-    // }
 
     return <div>
         <CheckoutSteps step1 step2 step3 step4 ></CheckoutSteps>

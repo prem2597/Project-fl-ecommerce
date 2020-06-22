@@ -38,10 +38,9 @@ function App() {
               &#9776;
             </button>
             <Link to="/" >Padmahastha</Link>
-            {/* <a href="index.html">Padmahastha</a> */}
+          
           </div>
           <div className="header-links">
-            {/* <a href="cart.html">Cart</a> */}
             <Link to="/allproducts">Shop</Link>
             <Link to="/cart/:id?">Cart</Link>
             

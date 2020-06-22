@@ -14,7 +14,6 @@ const listProducts = (brand='',category = '', searchKeyword = '', sortOrder = ''
     }
 }
 
-
 const brandProducts = (brand='') => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST });
