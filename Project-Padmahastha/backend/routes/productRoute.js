@@ -10,8 +10,6 @@ router.get("/", async (req, res) => {
     const brand = req.query.brand;
     if (brand) {
     const category = req.query.category ? { category: req.query.category } : {};
-    
-    console.log(brand)
     const searchKeyword = req.query.searchKeyword ? {
       name: {
         $regex: req.query.searchKeyword,
@@ -28,7 +26,7 @@ router.get("/", async (req, res) => {
     else {
         const category = req.query.category ? { category: req.query.category } : {};
     
-    console.log(brand)
+    
     const searchKeyword = req.query.searchKeyword ? {
       name: {
         $regex: req.query.searchKeyword,
@@ -45,11 +43,6 @@ router.get("/", async (req, res) => {
 
     }
 });
-
-
-
-
-
 router.get("/:id", async(req, res) => {
     const product = await Product.findOne({_id: req.params.id});
     if(product) {
@@ -58,7 +51,6 @@ router.get("/:id", async(req, res) => {
         res.status(404).send({message: "Product Not Found. "})
     }
 });
-
 router.post("/", isAuth, isAdmin, async (req, res) => {
     const product = new Product({
         name: req.body.name,

@@ -22,7 +22,6 @@ router.post('/signin', async (req, res) => {
     }
 })
 
-
 router.put('/:id', isAuth, async (req, res) => {
     const userId = req.params.id;
     const user = await User.findById(userId);
