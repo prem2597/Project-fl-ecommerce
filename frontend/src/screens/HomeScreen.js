@@ -21,7 +21,7 @@ function HomeScreen(props) {
     return () => {
       //
     };
-  }, [category]);
+  }, [category, dispatch]);
 
   const submitHandler = (e) => {
     e.preventDefault();
