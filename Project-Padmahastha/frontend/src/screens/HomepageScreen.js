@@ -11,9 +11,11 @@ function HomepageScreen(props) {
                 <Link to={'/brand/' + brand.name}>
                     <img className="product-image" src={brand.image} alt="product" />
                 </Link>
-                <Link to={'/brand/' + brand.name}>Shop Now </Link>
                  <div className="product-name">
                     <Link to={'/brand/' + brand.name}>{brand.name}</Link>
+                </div>
+                <div className="learn">
+                  <p> {brand.learnmore} </p>
                 </div>
             </div>
         </li>)
