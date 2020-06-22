@@ -7,6 +7,7 @@ function ProductScreen(props) {
     const [qty, setQty] = useState(1); 
     const productDetails = useSelector(state => state.productDetails);
     const { product, loading, error } = productDetails;
+    const brand = props.match.params.name ? props.match.params.name : '';
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,7 +23,7 @@ function ProductScreen(props) {
 
     return <div>
         <div className="back-to-result">
-            <Link to = "/homepage">Back to result</Link>
+            <Link to ={'/brand/' + brand}>Back to result</Link>
         </div>
         { loading? <div>Loading...</div>:
             error? <div>{error}</div>:
