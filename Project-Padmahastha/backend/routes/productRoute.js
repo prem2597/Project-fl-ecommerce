@@ -4,12 +4,9 @@ import { getToken, isAuth, isAdmin } from '../util';
 
 const router = express.Router();
 
-// router.get("/", async(req, res) => {
-//     const products = await Product.find({});
-//     res.send(products);
-// });
-
 router.get("/", async (req, res) => {
+    const brand = req.query.brand;
+    if (brand) {
     const category = req.query.category ? { category: req.query.category } : {};
     const searchKeyword = req.query.searchKeyword ? {
       name: {
@@ -21,8 +18,28 @@ router.get("/", async (req, res) => {
       (req.query.sortOrder === 'lowest' ? { price: 1 } : { price: -1 })
       :
       { _id: -1 };
+
+    const products = await Product.find({ ...category, ...searchKeyword }).sort(sortOrder).find({brand});
+    res.send(products); }
+    else {
+        const category = req.query.category ? { category: req.query.category } : {};
+    
+    
+    const searchKeyword = req.query.searchKeyword ? {
+      name: {
+        $regex: req.query.searchKeyword,
+        $options: 'i'
+      }
+    } : {};
+    const sortOrder = req.query.sortOrder ?
+      (req.query.sortOrder === 'lowest' ? { price: 1 } : { price: -1 })
+      :
+      { _id: -1 };
+
     const products = await Product.find({ ...category, ...searchKeyword }).sort(sortOrder);
     res.send(products);
+
+    }
 });
 
 router.get("/:id", async(req, res) => {

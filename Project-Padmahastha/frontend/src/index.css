@@ -443,3 +443,19 @@ tbody>tr:nth-child(odd){
 .categories a:hover{
   background-color: #c0c0c0;
 }
+
+/* Brand page*/
+.brand-image {
+  max-width: 34rem;
+  max-height: 34rem;
+}
+.shop {
+  color:purple;
+  font-weight: bold;
+  text-align: center;
+}
+.learn {
+  height: 250px;
+  overflow-y: scroll;
+}
+

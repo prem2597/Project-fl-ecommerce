@@ -2,11 +2,22 @@ import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_
 import axios from 'axios';
 import Axios from 'axios';
 
-const listProducts = (category = '', searchKeyword = '', sortOrder = '') => async (dispatch) => {
+const listProducts = (brand='',category = '', searchKeyword = '', sortOrder = '') => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST });
         const { data } = await axios.get("/api/products?category=" + category +
-        "&searchKeyword=" + searchKeyword + "&sortOrder=" + sortOrder);
+        "&searchKeyword=" + searchKeyword + "&sortOrder=" + sortOrder + "&brand=" + brand);
+        dispatch({type: PRODUCT_LIST_SUCCESS, payload: data});
+    }
+    catch(error){
+        dispatch({type: PRODUCT_LIST_FAIL, payload: error.message});
+    }
+}
+
+const brandProducts = (brand='') => async (dispatch) => {
+    try {
+        dispatch({ type: PRODUCT_LIST_REQUEST });
+        const { data } = await axios.get("/api/products?brand=" + brand);
         dispatch({type: PRODUCT_LIST_SUCCESS, payload: data});
     }
     catch(error){
@@ -63,4 +74,4 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
     }
 }
 
-export { listProducts, detailsProduct, saveProduct, deleteProduct }
+export { listProducts, detailsProduct, saveProduct, deleteProduct,brandProducts }

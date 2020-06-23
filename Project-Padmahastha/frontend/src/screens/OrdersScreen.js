@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// import { signin } from '../actions/userActions';
 import { listOrders, deleteOrder } from '../actions/orderActions';
 
 function OrdersScreen(props) {

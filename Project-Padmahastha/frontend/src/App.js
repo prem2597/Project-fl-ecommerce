@@ -14,6 +14,7 @@ import PlaceOrderScreen from './screens/placeOrderScreen';
 import OrderScreen from './screens/orderScreen';
 import OrdersScreen from './screens/OrdersScreen';
 import ProfileScreen from './screens/profileScreen';
+import HomeScreen1 from './screens/HomeScreen1';
 /**
  * This  App function will be rendered into the html page in the root id.
  * This function consists of header and the footer.
@@ -55,6 +56,7 @@ function App() {
             <Link to="/" >Padmahastha</Link>
           </div>
           <div className="header-links">
+            <Link to="/allproducts">Shop</Link>
             {
               cartItems.length === 0 ?
               <div></div>
@@ -108,7 +110,9 @@ function App() {
             <Route path="/product/:id" component={ProductScreen} />
             <Route path="/cart/:id?" component={CartScreen} />
             <Route path="/category/:id" component={HomeScreen} />
-            <Route path="/" exact={true} component={HomeScreen} />
+            <Route path="/" exact={true} component={HomeScreen1} />
+            <Route path="/allproducts" exact={true} component={HomeScreen} />
+            <Route path="/brands/:name" exact={true} component={HomeScreen} />
           </div>
         </main>
         <footer className="footer">
