@@ -56,7 +56,6 @@ function App() {
             <Link to="/" >Padmahastha</Link>
           </div>
           <div className="header-links">
-            <Link to="/allproducts">Shop</Link>
             {
               cartItems.length === 0 ?
               <div></div>
@@ -64,6 +63,7 @@ function App() {
               <div className="badge">{cartItems.length}</div>
             }
             <Link to="/cart"><strong>Cart</strong></Link>
+            <Link to="/allproducts"><strong>Shop</strong></Link>
             {
               userInfo ? <Link to="/profile"><strong>{userInfo.name}</strong></Link>:
                 <Link to="/signin"><strong>Sign In</strong></Link>
