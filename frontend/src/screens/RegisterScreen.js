@@ -24,12 +24,24 @@ function RegisterScreen(props) {
 		return () => {
 			//
 		}
-	}, [userInfo])
+    }, [userInfo])
+
+    this.validate = (event)=>{
+        var name = event.target.value;
+        if(name.length > 5){
+            alert("Ok");
+        }
+        else{
+            alert("Minimum length is 5");
+        }
+
+    };
     const submitHandler=(e)=>{
+        if(validate)
         e.preventDefault();
         dispatch(register(name,email,password));
-
     }
+    
   	return <div className="form">
           <form onSubmit ={submitHandler}>
               <ul className="form-container">
@@ -44,7 +56,7 @@ function RegisterScreen(props) {
                       <label htmlFor="name">
                           Name
                       </label>
-                      <input type="name" name="name" id="name" onChange={(e)=>setName(e.target.value)}>
+                      <input type="name" name="name" id="name" onChange={(e)=>setName(e.target.value)}x>
 
                       </input>
                   </li>
@@ -58,7 +70,7 @@ function RegisterScreen(props) {
                   </li>
                   <li>
                       <label htmlFor="password">password</label>
-                      <input type="password" id="password" onChange={(e)=>setPassword(e.target.value)}>
+                      <input type="password" id="password" onChange={(e)=>setPassword(e.target.value)} >
 
                       </input>
                   </li>

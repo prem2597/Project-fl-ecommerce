@@ -30,6 +30,10 @@ function ProfileScreen(props) {
 
     const myOrderList = useSelector(state => state.myOrderList);
     const { loading: loadingOrders, orders, error: errorOrders } = myOrderList;
+    console.log("-------------------------------------------------");
+    console.log(orders)
+    console.log("-------------------------------------------------");
+
     
     useEffect(() => {
         if (userInfo) {
