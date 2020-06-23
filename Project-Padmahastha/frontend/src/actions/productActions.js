@@ -2,7 +2,7 @@ import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_
 import axios from 'axios';
 import Axios from 'axios';
 
-const listProducts = (brand='',category = '', searchKeyword = '', sortOrder = '') => async (dispatch) => {
+const listProducts = (brand = '', category = '', searchKeyword = '', sortOrder = '') => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST });
         const { data } = await axios.get("/api/products?category=" + category +
@@ -74,4 +74,4 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
     }
 }
 
-export { listProducts, detailsProduct, saveProduct, deleteProduct,brandProducts }
+export { listProducts, detailsProduct, saveProduct, deleteProduct, brandProducts }

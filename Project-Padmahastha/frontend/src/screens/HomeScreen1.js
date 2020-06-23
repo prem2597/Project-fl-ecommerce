@@ -4,8 +4,6 @@ import { Route, Link } from 'react-router-dom'
 import HomeScreen from './HomeScreen';
 
 function HomeScreen1(props) {
-
- 
   return <ul className="products">
     {
       data.brands.map(brand =>
