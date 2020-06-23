@@ -4,7 +4,7 @@ package-lock.json
 
 /node_modules
 .env
-/backend/config.js
+
 .eslintrc
 package-lock.json
 /dist
