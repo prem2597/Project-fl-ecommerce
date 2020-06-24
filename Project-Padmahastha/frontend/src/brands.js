@@ -1,3 +1,7 @@
+/**
+ * Brands data and details that showing in HomeScreen1
+ * This contains brand _id, name, image path, learnmore (information)
+ */
 export default {
     brands: [
         {
