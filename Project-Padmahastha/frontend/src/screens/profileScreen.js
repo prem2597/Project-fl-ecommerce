@@ -4,8 +4,20 @@ import { logout, update } from '../actions/userActions';
 import { listMyOrders } from '../actions/orderActions';
 import { useDispatch, useSelector } from 'react-redux';
 
+/**
+ * This ProfileScreen function displays the user details and 
+ * the orders he/she placed. Also, The user is allowed to edit
+ * the details like email, username, password 
+ * and logout from the session.
+*/
 function ProfileScreen(props) {
 
+    /**
+     * This useSelector function will extract the data from redux store state.
+     * The useSelector will take the current state as the argument and returns
+     * the required state.
+     * Redux generally used to maintian the states of the entire application.
+    */
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -15,11 +27,19 @@ function ProfileScreen(props) {
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
     
+    /**
+     * This handleLogout clears the the userInfo
+     * from the session and Signin screen displayed
+     */
     const handleLogout = () => {
         dispatch(logout());
         props.history.push("/signin");
     }
 
+    /**
+     * This submitHandler saves the users updated details
+     * to the database which requires when sign-in.
+     */
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(update({ userId: userInfo._id, email, name, password }))
@@ -31,6 +51,9 @@ function ProfileScreen(props) {
     const myOrderList = useSelector(state => state.myOrderList);
     const { loading: loadingOrders, orders, error: errorOrders } = myOrderList;
     
+    /**
+     * This useEffect will store the state in the redux store.
+    */
     useEffect(() => {
         if (userInfo) {
             setEmail(userInfo.email);
@@ -43,6 +66,9 @@ function ProfileScreen(props) {
         };
     }, [userInfo])
 
+    /**
+     * This will return the data about how the DOM should look like.
+    */
     return <div className="profile">
         <div className="profile-info">
             <div className="form">

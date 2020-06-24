@@ -1,16 +1,30 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { createOrder, detailsOrder, payOrder } from '../actions/orderActions';
+import { detailsOrder, payOrder } from '../actions/orderActions';
 import PaypalButton from '../components/PaypalButton'
-
+  
+/**
+* This function OrderScreen shows the order details and 
+* payment options that user can pay through. After successful 
+* payment, the user redirects to his/her profile page and
+*/
 function OrderScreen(props) {
-
+    
+    /**
+    * This useSelector function will extract the data from redux store state.
+    * The useSelector will take the current state as the argument and returns
+    * the required state.
+    * Redux generally used to maintian the states of the entire application.
+    */
     const orderPay = useSelector(state => state.orderPay);
     const { loading: loadingPay, success: successPay, error: errorPay } = orderPay;
     
     const dispatch = useDispatch();
-
+    
+    /**
+     * This useEffect will store the state in the redux store.
+     */
     useEffect(() => {
         if (successPay) {
             props.history.push("/profile");
@@ -21,13 +35,20 @@ function OrderScreen(props) {
         };
     }, [dispatch, props.match.params.id, successPay]);
 
+    /**
+     * This function is called to make payment for the order
+     * the user wants to purchase by redirecting to payment gateway.
+     */
     const handleSuccessPayment = (paymentResult) => {
         dispatch(payOrder(order, paymentResult));
     }
 
     const orderDetails = useSelector(state => state.orderDetails);
     const { loading, order, error } = orderDetails;
-   
+    
+    /**
+    * This will return the data about how the DOM should look like.
+    */
     return loading ? <div>Loading ...</div> : error ? <div>{error}</div> : <div>
         <div className="placeorder">
             <div className="placeorder-info">

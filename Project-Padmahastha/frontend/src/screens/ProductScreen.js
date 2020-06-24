@@ -3,23 +3,45 @@ import {Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { detailsProduct } from '../actions/productActions';
 
+/**
+ * This ProductScreen contains the details of the product 
+ * and also other options such as -
+ * setting the quantity of the products i.e., no. of items,
+ * and add to cart option for that product.
+ */
 function ProductScreen(props) {
+    /**
+    * This useSelector function will extract the data from redux store state.
+    * The useSelector will take the current state as the argument and returns
+    * the required state.
+    * Redux generally used to maintian the states of the entire application.
+    */
     const [qty, setQty] = useState(1); 
     const productDetails = useSelector(state => state.productDetails);
     const { product, loading, error } = productDetails;
     const dispatch = useDispatch();
 
+    /**
+    * This useEffect will store the state in the redux store.
+    */
     useEffect(() => {
         dispatch(detailsProduct(props.match.params.id));
         return () => {
-
+            //
         };
     }, [dispatch,props.match.params.id]);
 
+    /**
+     * This const handleAddToCart adds the product
+     * to the cart.
+     */
     const handleAddToCart = () => {
         props.history.push("/cart/" + props.match.params.id + "?qty=" + qty )
     }
 
+    /**
+    * This will return the data about how the DOM should look like.
+    */
     return <div>
         <div className="back-to-result">
             <Link to = "/allproducts">Back to shop</Link>
