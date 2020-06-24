@@ -86,6 +86,18 @@ router.put("/:id", isAuth, isAdmin, async (req, res) => {
     return res.status(500).send({message: 'Error in Updating Product.'})
 })
 
+router.post("/update", async (req, res) => {
+    const productId = req.query.id;
+    const qty = req.query.qty;
+    const product = await Product.findById(productId);
+    const updateProduct = await Product.updateOne({_id: productId}, {countInStock: (product.countInStock-qty)})
+    if (updateProduct) {
+        res.send({message: "Quantity Updated"});
+    } else {
+        res.send("Error in quantity update")
+    }
+})
+
 router.delete("/:id", isAuth, isAdmin, async (req, res) => {
     const deletedProduct = await Product.findById(req.params.id);
     if (deletedProduct) {
