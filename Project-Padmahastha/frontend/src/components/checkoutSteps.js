@@ -1,5 +1,11 @@
 import React from 'react';
 
+/**
+ * This Function CheckoutSteps shows the steps to
+ * place and create an order.
+ * 
+ * @param { props } props 
+ */
 function CheckoutSteps(props) {
   return <div className="checkout-steps">
     <div className={props.step1 ? 'active' : ''} >Signin</div>

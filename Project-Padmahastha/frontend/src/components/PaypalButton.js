@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
+/**
+ * This Function PaypalButton shows the paypal option on placeorder
+ * screen it redirects the user to Payment gateway.
+ * 
+ * @param { props } props 
+ */
 function PaypalButton(props) {
 
     const [sdkReady, setSdkReady] = useState(false);
@@ -50,6 +56,9 @@ function PaypalButton(props) {
 
     const Button = window.paypal.Buttons.driver('react', { React, ReactDOM });
 
+    /**
+     * This will return the data about how the DOM should look like.
+    */
     return <Button {...props} createOrder={(data, actions) => createOrder(data, actions)}
         onApprove={(data, actions) => onApprove(data, actions)} />
 }
