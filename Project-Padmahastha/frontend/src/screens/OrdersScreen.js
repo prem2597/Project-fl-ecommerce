@@ -3,8 +3,19 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { listOrders, deleteOrder } from '../actions/orderActions';
 
+/**
+ * This OrdersScreen function is like Managing orders.
+ * Only admin has access to this screen where he/she can
+ * delete the order or go through the order details placed
+ * by the user.
+ */
 function OrdersScreen(props) {
-
+    /**
+    * This useSelector function will extract the data from redux store state.
+    * The useSelector will take the current state as the argument and returns
+    * the required state.
+    * Redux generally used to maintian the states of the entire application.
+    */
     const orderList = useSelector(state => state.orderList);
     const { loading, orders, error } = orderList;
 
@@ -13,6 +24,9 @@ function OrdersScreen(props) {
 
     const dispatch = useDispatch();
 
+    /**
+     * This useEffect will store the state in the redux store.
+     */
     useEffect(() => {
         dispatch(listOrders());
         return () => {
@@ -20,9 +34,16 @@ function OrdersScreen(props) {
         };
     }, [successDelete]);
 
+    /**
+    * This will delete the order with respect to the order id.
+    */
     const deleteHandler = (order) => {
         dispatch(deleteOrder(order._id));
     }
+    
+    /**
+    * This will return the data about how the DOM should look like.
+    */
     return loading ? <div>Loading...</div> :
     <div className="content content-margined">
         <div className="order-header">

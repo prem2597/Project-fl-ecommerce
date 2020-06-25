@@ -6,8 +6,18 @@ import CheckoutSteps from '../components/checkoutSteps';
 import { createOrder } from '../actions/orderActions';
 import { saveProduct, updateProduct } from '../actions/productActions';
 
+/**
+ * This PlaceOrderScreen shows the order details to confirm by the user
+ * and check the all details mention are correct or not.
+ * This screen is 4th and final step of the Checkout steps.
+ */
 function PlaceOrderScreen(props) {
-
+    /**
+    * This useSelector function will extract the data from redux store state.
+    * The useSelector will take the current state as the argument and returns
+    * the required state.
+    * Redux generally used to maintian the states of the entire application.
+    */
     const cart = useSelector(state => state.cart);
     const orderCreate = useSelector(state => state.orderCreate);
     const { loading, success, error, order } = orderCreate;
@@ -37,14 +47,19 @@ function PlaceOrderScreen(props) {
             dispatch(removeFromCart(item.product));
         })
     }
+    /**
+    * This useEffect will store the state in the redux store.
+    */
     useEffect(() => {
         if ( success ) {
-            
             props.history.push("/order/" + order._id);
             removeFromCartHandler();
         }
     }, [success]);
 
+    /**
+    * This will return the data about how the DOM should look like.
+    */
     return <div>
         <CheckoutSteps step1 step2 step3 step4 ></CheckoutSteps>
         <div className="placeorder">

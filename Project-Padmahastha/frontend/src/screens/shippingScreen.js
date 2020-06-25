@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
-// import {Link} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { saveShipping } from '../actions/cartActions';
 import CheckoutSteps from '../components/checkoutSteps';
 
+/**
+ * This ShippingScreen function contains a form
+ * where the user needs to enter the shipping address
+ * for delivering of the product.
+ * This is the 2nd step of the checkout steps
+ * The shipping details are saved and redirects to the payment screen.
+ */
 function ShippingScreen(props) {
 
     const [address, setAddress] = useState('');
@@ -13,12 +19,19 @@ function ShippingScreen(props) {
 
     const dispatch = useDispatch();
 
+    /**
+     * This submitHandler saves the shipping details and redirects to
+     * payment screen which is 3rd step of checkout steps
+     */
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(saveShipping({ address, city, postalCode, country} ));
         props.history.push('payment');
     }
 
+    /**
+     * This will return the data about how the DOM should look like.
+    */
     return <div>
         <CheckoutSteps step1 step2 ></CheckoutSteps>
         <div className="form">

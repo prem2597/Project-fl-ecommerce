@@ -4,6 +4,11 @@ import { getToken, isAuth, isAdmin } from '../util';
 
 const router = express.Router();
 
+/**
+ * route for getting all the product details for the
+ * query details like search, sort, brand filter.
+ * No authentication and admin required for this route.
+*/
 router.get("/", async (req, res) => {
     const brand = req.query.brand;
     if (brand) {
@@ -39,6 +44,10 @@ router.get("/", async (req, res) => {
     }
 });
 
+/**
+ * route for getting product details with the product id
+ * No authentication and admin required for this route.
+*/
 router.get("/:id", async(req, res) => {
     const product = await Product.findOne({_id: req.params.id});
     if(product) {
@@ -48,6 +57,11 @@ router.get("/:id", async(req, res) => {
     }
 });
 
+/**
+ * route for creating new product
+ * only admin is allowed to this route
+ * for creating product.
+*/
 router.post("/", isAuth, isAdmin, async (req, res) => {
     const product = new Product({
         name: req.body.name,
@@ -67,6 +81,11 @@ router.post("/", isAuth, isAdmin, async (req, res) => {
     return res.status(500).send({message: 'Error in Creating Product.'})
 })
 
+/**
+ * route for updating new product
+ * only admin is allowed to this route
+ * for updating product.
+*/
 router.put("/:id", isAuth, isAdmin, async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId);
@@ -98,6 +117,11 @@ router.post("/update", async (req, res) => {
     }
 })
 
+/**
+ * route for deleting new product
+ * only admin is allowed to this route
+ * for deleting product.
+*/
 router.delete("/:id", isAuth, isAdmin, async (req, res) => {
     const deletedProduct = await Product.findById(req.params.id);
     if (deletedProduct) {

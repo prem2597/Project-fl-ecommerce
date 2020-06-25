@@ -1,6 +1,11 @@
 import jwt, { decode } from 'jsonwebtoken';
 import config from './config';
 
+/**
+ * This const getToken used to create a token 
+ * with use of jsonwebtoken
+ * @param { user } user 
+ */
 const getToken = (user) => {
     return jwt.sign({
         _id: user._id,
@@ -12,6 +17,15 @@ const getToken = (user) => {
     })
 }
 
+/**
+ * This const isAuth is used to authenticate 
+ * a user when a sign-in or any action performedon 
+ * on the website for which sign-in is required.
+ * 
+ * @param { req } req 
+ * @param { res } res 
+ * @param { next } next 
+ */
 const isAuth = (req, res, next) => {
     const token = req.headers.authorization;
     if (token) {
@@ -29,6 +43,16 @@ const isAuth = (req, res, next) => {
     }
 }
 
+/**
+ * This const isAdmin is used to know 
+ * if the signed-in user is admin or not.
+ * This is required for actions that are only 
+ * accessed by an admin.
+ * 
+ * @param { req } req 
+ * @param { res } res 
+ * @param { next } next 
+ */
 const isAdmin = (req, res, next) => {
     if(req.user && req.user.isAdmin) {
         return next();
