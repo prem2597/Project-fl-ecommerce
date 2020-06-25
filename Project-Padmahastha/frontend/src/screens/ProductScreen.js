@@ -56,7 +56,7 @@ function ProductScreen(props) {
                                     Price: {product.price}
                                 </li>
                                 <li>
-                                    Status: {product.countInStock > 0 ? "In Stock": "Unavailable"}
+                                    Status: {product.countInStock > 0 ? (qty): "Unavailable"}
                                 </li>
                                 <li>
                                     Qty: <select value={qty} onChange={(e) => {setQty(e.target.value)}}>

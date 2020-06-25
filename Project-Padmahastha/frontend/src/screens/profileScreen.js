@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { logout, update } from '../actions/userActions';
-import { listMyOrders } from '../actions/orderActions';
+import { listMyOrders, deleteOrder, listOrders} from '../actions/orderActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 function ProfileScreen(props) {
@@ -25,11 +25,18 @@ function ProfileScreen(props) {
         dispatch(update({ userId: userInfo._id, email, name, password }))
     }
 
+    const deleteHandler = (order) => {
+        dispatch(deleteOrder(order._id));
+    }
+
     const userUpdate = useSelector(state => state.userUpdate);
     const { loading, success, error } = userUpdate;
 
     const myOrderList = useSelector(state => state.myOrderList);
     const { loading: loadingOrders, orders, error: errorOrders } = myOrderList;
+
+    const orderDelete = useSelector(state => state.orderDelete);
+    const { loading: loadingDelete, success: successDelete, error: errorDelete } = orderDelete;
     
     useEffect(() => {
         if (userInfo) {
@@ -41,7 +48,11 @@ function ProfileScreen(props) {
         return () => {
             //
         };
-    }, [userInfo])
+    }, [userInfo,successDelete])
+
+    
+
+    
 
     return <div className="profile">
         <div className="profile-info">
@@ -100,6 +111,8 @@ function ProfileScreen(props) {
                                     <td>{order.isPaid}</td>
                                     <td>
                                         <Link to={"/order/" + order._id}>DETAILS</Link>
+                                        <button type="button" onClick={() => deleteHandler(order)} className="button secondary">Delete</button>
+                                                                 
                                     </td>
                                 </tr>)}
                             </tbody>
