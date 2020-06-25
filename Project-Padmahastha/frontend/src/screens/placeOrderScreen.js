@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/checkoutSteps';
 import { createOrder } from '../actions/orderActions';
+import { saveProduct, updateProduct } from '../actions/productActions';
 
 /**
  * This PlaceOrderScreen shows the order details to confirm by the user
@@ -40,7 +41,9 @@ function PlaceOrderScreen(props) {
         }))
     }
     const removeFromCartHandler = () => {
-        cartItems.map(item => {
+        cartItems.map(async item => {
+            dispatch(updateProduct(item.product, item.qty))
+            console.log("Data updated")
             dispatch(removeFromCart(item.product));
         })
     }

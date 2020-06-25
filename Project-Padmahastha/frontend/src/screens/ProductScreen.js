@@ -16,7 +16,7 @@ function ProductScreen(props) {
     * the required state.
     * Redux generally used to maintian the states of the entire application.
     */
-    const [qty, setQty] = useState(1); 
+    const [qty, setQty] = useState(1);
     const productDetails = useSelector(state => state.productDetails);
     const { product, loading, error } = productDetails;
     const dispatch = useDispatch();
@@ -25,9 +25,12 @@ function ProductScreen(props) {
     * This useEffect will store the state in the redux store.
     */
     useEffect(() => {
+        const interval = setInterval(() => {
         dispatch(detailsProduct(props.match.params.id));
-        return () => {
-            //
+            console.log("THis component is fetching the data after 10 secs.")
+        }, 10000)
+        return () => clearInterval(interval); {
+          
         };
     }, [dispatch,props.match.params.id]);
 
@@ -78,7 +81,7 @@ function ProductScreen(props) {
                                     Price: {product.price}
                                 </li>
                                 <li>
-                                    Status: {product.countInStock > 0 ? "In Stock": "Unavailable"}
+                                    Status: {product.countInStock > 0 ? "In Stock": "Unavailable"} ({product.countInStock})
                                 </li>
                                 <li>
                                     Qty: <select value={qty} onChange={(e) => {setQty(e.target.value)}}>

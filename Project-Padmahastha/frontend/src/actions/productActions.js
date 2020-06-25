@@ -1,8 +1,4 @@
-import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, 
-    PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, 
-    PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS, PRODUCT_SAVE_FAIL, 
-    PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL
-} from '../constants/productConstants'
+import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS, PRODUCT_SAVE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL, UPDATE_REQUEST, UPDATE_SUCCESS, UPDATE_FAIL } from '../constants/productConstants'
 import axios from 'axios';
 import Axios from 'axios';
 
@@ -92,6 +88,16 @@ const detailsProduct = (productId) => async (dispatch) => {
     }
 }
 
+const updateProduct = (productId, qty) => async (dispatch) => {
+    try {
+        dispatch({type: UPDATE_REQUEST});
+        const {data} = await axios.post("/api/products/update?id="+productId+"&qty="+qty);
+        dispatch({type: UPDATE_SUCCESS, payload: data});
+    } catch (error) {
+        dispatch({type: UPDATE_FAIL, payload: error.message});
+    }
+}
+
 /**
  * This action deleteProduct make a dispatch request to the 
  * backend server to delete a product by the admin.
@@ -113,4 +119,5 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
     }
 }
 
-export { listProducts, detailsProduct, saveProduct, deleteProduct, brandProducts }
+export { listProducts, detailsProduct, saveProduct, deleteProduct, brandProducts, updateProduct }
+
