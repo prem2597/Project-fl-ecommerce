@@ -2,6 +2,16 @@ import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_
 import axios from 'axios';
 import Axios from 'axios';
 
+/**
+ * This action listProducts sends these params and 
+ * make a dispatch request to backend server to list the products
+ * according to the search keywords, sortOrder, category, brand
+ * 
+ * @param { brand } brand 
+ * @param { category } category 
+ * @param { searchKeyword } searchKeyword 
+ * @param { sortOrder } sortOrder 
+ */
 const listProducts = (brand = '', category = '', searchKeyword = '', sortOrder = '') => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST });
@@ -13,6 +23,13 @@ const listProducts = (brand = '', category = '', searchKeyword = '', sortOrder =
         dispatch({type: PRODUCT_LIST_FAIL, payload: error.message});
     }
 }
+/**
+ * This action brandProducts send the brand ad param and
+ * make a dispatch request to backend server to list the products
+ * according to the brand.
+ * 
+ * @param { brand } brand
+ */
 
 const brandProducts = (brand='') => async (dispatch) => {
     try {
@@ -25,6 +42,12 @@ const brandProducts = (brand='') => async (dispatch) => {
     }
 }
 
+/**
+ * This action saveProduct make a dispatch request to the 
+ * backend server for creating a new product by adding to the database.
+ * 
+ * @param { product } product 
+ */
 const saveProduct = (product) => async (dispatch, getState) =>{
     try {
         dispatch({type: PRODUCT_SAVE_REQUEST, payload: product});
@@ -49,6 +72,12 @@ const saveProduct = (product) => async (dispatch, getState) =>{
     }
 }
 
+/**
+ * This action detailsProduct make a dispatch request to the 
+ * backend server to get the details of the product as to the prouctId
+ * 
+ * @param { productId } productId 
+ */
 const detailsProduct = (productId) => async (dispatch) => {
     try {
         dispatch({type: PRODUCT_DETAILS_REQUEST, payload: productId});
@@ -69,6 +98,12 @@ const updateProduct = (productId, qty) => async (dispatch) => {
     }
 }
 
+/**
+ * This action deleteProduct make a dispatch request to the 
+ * backend server to delete a product by the admin.
+ * 
+ * @param { productId } productId 
+ */
 const deleteProduct = (productId) => async (dispatch, getState) => {
     try {
         const { userSignin: { userInfo } } = getState();

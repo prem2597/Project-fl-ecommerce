@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from 'react';
-// import {Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// import { signin } from '../actions/userActions';
 import { saveProduct, listProducts, deleteProduct } from '../actions/productActions';
 
+/**
+* This function ProductsScreen shows the product details and 
+* adding a new product to the website. Similar to OrdersScreen, This
+* is also managed by admin where he/she can edit or delete products
+* and add new products.
+*/
 function ProductsScreen(props) {
+    /**
+    * This useSelector function will extract the data from redux store state.
+    * The useSelector will take the current state as the argument and returns
+    * the required state.
+    * Redux generally used to maintian the states of the entire application.
+    */
     const [modalVisible, setModalVisible] = useState(false);
     const [id, setId] = useState('');
     const [name, setName] = useState('');
@@ -22,6 +32,9 @@ function ProductsScreen(props) {
     const { loading: loadingDelete, success: successDelete, error:errorDelete } = productDelete;
     const dispatch = useDispatch();
 
+    /**
+    * This useEffect will store the state in the redux store.
+    */
     useEffect(() => {
         if ( successSave ) {
             setModalVisible(false)
@@ -31,6 +44,12 @@ function ProductsScreen(props) {
         };
     }, [successSave, successDelete, dispatch]);
 
+    /**
+     * This openModal opens the form where the admin
+     * can add a new product by filling the details
+     * or edit the existing product.
+     * @param { product } product 
+     */
     const openModal = (product) => {
         setModalVisible(true);
         setId(product._id);
@@ -43,15 +62,27 @@ function ProductsScreen(props) {
         setCountInStock(product.countInStock);
     }
 
+    /**
+     * This submitHandler adds thevnew product to the database.
+     * This also simultaneously reflected in HomeScreen page.
+     */
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(saveProduct({_id: id, name, price, image, brand, category, countInStock, description,}));
     }
 
+    /**
+     * This deleteHandler delete a particular product from the database.
+     * This also simultaneously reflected in HomeScreen page.
+     * @param { product } product 
+     */
     const deleteHandler = (product) => {
         dispatch(deleteProduct(product._id));
     }
 
+    /**
+    * This will return the data about how the DOM should look like.
+    */
     return <div className="content content-margined">
         <div className="product-header">
             <h3>Products</h3>

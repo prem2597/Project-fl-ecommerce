@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+// shippingSchema
 const shippingSchema = {
   address: { type: String, required: true },
   city: { type: String, required: true },
@@ -7,10 +8,12 @@ const shippingSchema = {
   country: { type: String, required: true },
 };
 
+// paymentSchema
 const paymentSchema = {
   paymentMethod: { type: String, required: true }
 };
 
+// orderItemSchema
 const orderItemSchema = new mongoose.Schema({
   name: { type: String, required: true },
   qty: { type: Number, required: true },
@@ -23,6 +26,7 @@ const orderItemSchema = new mongoose.Schema({
   },
 });
 
+// orderSchema
 const orderSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   orderItems: [orderItemSchema],
@@ -40,6 +44,7 @@ const orderSchema = new mongoose.Schema({
   timestamps: true
 });
 
+// creating orderModel according to the orderSchema
 const orderModel = mongoose.model("Order", orderSchema);
 
 export default orderModel;
