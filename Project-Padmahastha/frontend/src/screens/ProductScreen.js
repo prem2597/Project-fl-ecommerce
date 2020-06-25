@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { detailsProduct } from '../actions/productActions';
+import axios from 'axios';
 
 function ProductScreen(props) {
     const [qty, setQty] = useState(1);
@@ -9,9 +10,16 @@ function ProductScreen(props) {
     const { product, loading, error } = productDetails;
     const dispatch = useDispatch();
 
+    const updateCall = async (id) => {
+        const details = await axios.get("/api/products/"+id);
+        document.getElementById('dataupdate').innerHTML = details.data.countInStock;
+        product.countInStock = details.data.countInStock;
+    }
+
     useEffect(() => {
-        const interval = setInterval(() => {
         dispatch(detailsProduct(props.match.params.id));
+        const interval = setInterval(() => {
+            updateCall(props.match.params.id);
             console.log("THis component is fetching the data after 10 secs.")
         }, 10000)
         return () => clearInterval(interval); {
@@ -59,7 +67,10 @@ function ProductScreen(props) {
                                     Price: {product.price}
                                 </li>
                                 <li>
-                                    Status: {product.countInStock > 0 ? "In Stock": "Unavailable"} ({product.countInStock})
+                                    Status: {product.countInStock > 0 ? "In Stock": "Unavailable"}. Count is mentioned below.
+                                </li>
+                                <li id="dataupdate">
+                                    {product.countInStock}
                                 </li>
                                 <li>
                                     Qty: <select value={qty} onChange={(e) => {setQty(e.target.value)}}>
