@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { logout, update } from '../actions/userActions';
-import { listMyOrders } from '../actions/orderActions';
+import { listMyOrders, deleteOrder } from '../actions/orderActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 /**
@@ -50,6 +50,14 @@ function ProfileScreen(props) {
 
     const myOrderList = useSelector(state => state.myOrderList);
     const { loading: loadingOrders, orders, error: errorOrders } = myOrderList;
+
+    const orderDelete = useSelector(state => state.orderDelete);
+    // eslint-disable-next-line
+    const { loading: loadingDelete, success: successDelete, error: errorDelete } = orderDelete;
+
+    const deleteHandler = (order) => {
+        dispatch(deleteOrder(order));
+    }
     
     /**
      * This useEffect will store the state in the redux store.
@@ -65,7 +73,7 @@ function ProfileScreen(props) {
             //
         };
         // eslint-disable-next-line
-    }, [userInfo])
+    }, [userInfo, successDelete])
 
     /**
      * This will return the data about how the DOM should look like.
@@ -127,6 +135,8 @@ function ProfileScreen(props) {
                                     <td>{order.isPaid}</td>
                                     <td>
                                         <Link to={"/order/" + order._id}>DETAILS</Link>
+                                        {'  '}
+                                        <button className="button" onClick={() => deleteHandler(order._id)}>Delete</button>
                                     </td>
                                 </tr>)}
                             </tbody>
