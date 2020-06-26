@@ -64,6 +64,7 @@ function ProfileScreen(props) {
         return () => {
             //
         };
+        // eslint-disable-next-line
     }, [userInfo])
 
     /**

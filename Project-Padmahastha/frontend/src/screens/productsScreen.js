@@ -25,10 +25,12 @@ function ProductsScreen(props) {
     const [countInStock, setCountInStock] = useState('');
     const [description, setDescription] = useState('');
     const productList = useSelector(state => state.productList);
+    // eslint-disable-next-line
     const {loading, products, error} = productList;
     const productSave = useSelector(state => state.productSave);
     const { loading: loadingSave, success: successSave, error:errorSave } = productSave;
     const productDelete = useSelector(state => state.productDelete);
+    // eslint-disable-next-line
     const { loading: loadingDelete, success: successDelete, error:errorDelete } = productDelete;
     const dispatch = useDispatch();
 

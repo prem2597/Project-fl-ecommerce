@@ -18,6 +18,7 @@ function OrderScreen(props) {
     * Redux generally used to maintian the states of the entire application.
     */
     const orderPay = useSelector(state => state.orderPay);
+    // eslint-disable-next-line
     const { loading: loadingPay, success: successPay, error: errorPay } = orderPay;
     
     const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function OrderScreen(props) {
         }
         return () => {
         };
+        // eslint-disable-next-line
     }, [dispatch, props.match.params.id, successPay]);
 
     /**

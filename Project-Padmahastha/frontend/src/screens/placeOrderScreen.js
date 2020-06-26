@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/checkoutSteps';
 import { createOrder } from '../actions/orderActions';
-import { saveProduct, updateProduct } from '../actions/productActions';
+import { updateProduct } from '../actions/productActions';
 
 /**
  * This PlaceOrderScreen shows the order details to confirm by the user
@@ -20,6 +20,7 @@ function PlaceOrderScreen(props) {
     */
     const cart = useSelector(state => state.cart);
     const orderCreate = useSelector(state => state.orderCreate);
+    // eslint-disable-next-line
     const { loading, success, error, order } = orderCreate;
     const { cartItems, shipping, payment } = cart;
 
@@ -43,7 +44,6 @@ function PlaceOrderScreen(props) {
     const removeFromCartHandler = () => {
         cartItems.map(async item => {
             dispatch(updateProduct(item.product, item.qty))
-            console.log("Data updated")
             dispatch(removeFromCart(item.product));
         })
     }
@@ -55,6 +55,7 @@ function PlaceOrderScreen(props) {
             props.history.push("/order/" + order._id);
             removeFromCartHandler();
         }
+        // eslint-disable-next-line
     }, [success]);
 
     /**

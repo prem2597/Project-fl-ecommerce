@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { listOrders, deleteOrder } from '../actions/orderActions';
@@ -17,9 +17,11 @@ function OrdersScreen(props) {
     * Redux generally used to maintian the states of the entire application.
     */
     const orderList = useSelector(state => state.orderList);
+    // eslint-disable-next-line
     const { loading, orders, error } = orderList;
 
     const orderDelete = useSelector(state => state.orderDelete);
+    // eslint-disable-next-line
     const { loading: loadingDelete, success: successDelete, error: errorDelete } = orderDelete;
 
     const dispatch = useDispatch();
@@ -32,6 +34,7 @@ function OrdersScreen(props) {
         return () => {
             //
         };
+        // eslint-disable-next-line
     }, [successDelete]);
 
     /**

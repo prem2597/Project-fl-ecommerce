@@ -40,6 +40,7 @@ function HomeScreen(props) {
     return () => {
       //
     };
+    // eslint-disable-next-line
   }, [category]);
   
   /**

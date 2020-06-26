@@ -33,13 +33,15 @@ function ProductScreen(props) {
     */
     useEffect(() => {
         dispatch(detailsProduct(props.match.params.id));
+        // eslint-disable-next-line
         const interval = setInterval(() => {
             updateCall(props.match.params.id);
-            console.log("THis component is fetching the data after 10 secs.")
         }, 10000)
+        // eslint-disable-next-line
         return () => clearInterval(interval); {
           
         };
+        // eslint-disable-next-line
     }, [dispatch,props.match.params.id]);
 
     /**
