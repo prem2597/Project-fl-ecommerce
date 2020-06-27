@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { saveProduct, listProducts, deleteProduct } from '../actions/productActions';
+import { AiFillEdit } from 'react-icons/ai'
+import { AiFillDelete } from 'react-icons/ai'
 
 /**
 * This function ProductsScreen shows the product details and 
@@ -173,9 +175,9 @@ function ProductsScreen(props) {
                     <td>{product.category}</td>
                     <td>{product.brand}</td>
                     <td>
-                        <button className="button" onClick={() => openModal(product)}>Edit</button>
+                        <button className="button" onClick={() => openModal(product)}><AiFillEdit /></button>
                         {' '}
-                        <button className="button" onClick={() => deleteHandler(product)}>Delete</button>
+                        <button className="button" onClick={() => deleteHandler(product)}><AiFillDelete /></button>
                     </td>
                     </tr>))}
                 </tbody>

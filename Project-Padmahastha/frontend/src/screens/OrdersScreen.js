@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { listOrders, deleteOrder } from '../actions/orderActions';
+import { FcViewDetails } from 'react-icons/fc'
+import { AiFillDelete } from 'react-icons/ai'
 
 /**
  * This OrdersScreen function is like Managing orders.
@@ -78,9 +80,9 @@ function OrdersScreen(props) {
                         <td>{order.isDelivered.toString()}</td>
                         <td>{order.deliveredAt}</td>
                         <td>
-                            <Link to={"/order/" + order._id} className="button secondary" >Details</Link>
+                            <Link to={"/order/" + order._id} className="button secondary" ><FcViewDetails /></Link>
                             {' '}
-                            <button type="button" onClick={() => deleteHandler(order)} className="button secondary">Delete</button>
+                            <button type="button" onClick={() => deleteHandler(order)} className="button secondary"><AiFillDelete /></button>
                         </td>
                     </tr>))}
                 </tbody>

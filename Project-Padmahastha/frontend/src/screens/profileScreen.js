@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { logout, update } from '../actions/userActions';
 import { listMyOrders, deleteOrder } from '../actions/orderActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { FcViewDetails } from 'react-icons/fc'
+import { AiFillDelete } from 'react-icons/ai'
 
 /**
  * This ProfileScreen function displays the user details and 
@@ -134,9 +136,9 @@ function ProfileScreen(props) {
                                     <td>{order.totalPrice}</td>
                                     <td>{order.isPaid}</td>
                                     <td>
-                                        <Link to={"/order/" + order._id}>DETAILS</Link>
+                                        <Link to={"/order/" + order._id}><FcViewDetails /></Link>
                                         {'  '}
-                                        <button className="button" onClick={() => deleteHandler(order._id)}>Delete</button>
+                                        <button className="button" onClick={() => deleteHandler(order._id)}><AiFillDelete /></button>
                                     </td>
                                 </tr>)}
                             </tbody>

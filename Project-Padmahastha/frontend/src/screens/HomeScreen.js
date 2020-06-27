@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducts, brandProducts } from '../actions/productActions';
+import { BsSearch } from 'react-icons/bs';
+import { FcFilledFilter } from 'react-icons/fc';
 
 /**
  * This HomeScreen function used in the App
@@ -72,11 +74,11 @@ function HomeScreen(props) {
       <li>
         <form onSubmit={submitHandler}>
           <input name="searchKeyword" onChange={(e) => setSearchKeyword(e.target.value)} />
-          <button type="submit">Search</button>
+          <button type="submit"><BsSearch /></button>
         </form>
       </li>
       <li>
-        Sort By {' '}
+        <FcFilledFilter /> {' '}
         <select name="sortOrder" onChange={sortHandler}>
           <option value="">Newest</option>
           <option value="lowest">Lowest</option>
